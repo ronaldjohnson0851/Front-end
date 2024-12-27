@@ -1,0 +1,17 @@
+  Frontend README
+An engaging and intutive user inteface thta allows users to interact with platform seamlessly. 
+It handles video playback, commenting, and an intergrated Twitter-like feed.
+
+  Key Features
+•Video Libary: View a list of all videos, filter generes, and search. 
+•Video Playback: Stream videos with the ability to playback. 
+•Twitter Feed: allowing you to tweet, use hashtags, post with images, @ friends, and see a timeline.
+
+
+  Technologies Used
+•Springboot
+•React
+•Postman
+•CSS
+
+
