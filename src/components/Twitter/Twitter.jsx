@@ -1,5 +1,5 @@
 import React from 'react';
-import TweetComponent from './TweetComponent';
+// import TweetComponent from './TweetComponent';
 
 const TwittersectionDisplay = () => {
   return (
@@ -7,7 +7,7 @@ const TwittersectionDisplay = () => {
       <h2>Tweet Your Views</h2>
       {/* Add TweetComponent here */}
       {/* <TweetComponent tweetText="Exploring React components with tweets!" /> */}
-      <TweetComponent tweetText="This is an awesome movie!!!!" />
+      {/* <TweetComponent tweetText="This is an awesome movie!!!!" /> */}
     </div>
   );
 };
