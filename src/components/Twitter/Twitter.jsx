@@ -11,7 +11,7 @@ const TwittersectionDisplay = () => {
 
 const TwitterDisplayStyle = {
     flex: '1', // Occupies 1 part of the row
-    height: '600px',
+    height: '100%',
     backgroundColor: '#f9f9f9',
     border: '1px solid #ccc',
     borderRadius: '4px',
