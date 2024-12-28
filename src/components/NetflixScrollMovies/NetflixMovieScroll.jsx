@@ -4,7 +4,7 @@ const NetflixMovieScroll = () => {
   return (
     <div style={componentScrollMovieStyle}>
       <h2>NetflixMovieScroll</h2>
-      <p>This area is for Netflix Movie from recently played and recommendations section </p>
+      <p>This area is for Netflix Movie from recently played and recommendations section...just added fyi </p>
     </div>
   );
 };

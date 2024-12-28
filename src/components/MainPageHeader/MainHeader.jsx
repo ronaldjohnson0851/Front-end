@@ -5,7 +5,6 @@ const MainHeader = () => {
   return (
     <header style={headerStyle}>
       <img src={logo} alt="Logo" style={logoStyle} />
-      {/* <h1 style={titleStyle}>TWITFLIX</h1> */}
     </header>
   );
 };
@@ -20,6 +19,7 @@ const headerStyle = {
   justifyContent: 'left',
   padding: '0rem',
 };
+
 
 const logoStyle = {
   height: '60px', // Adjust the height to fit the header

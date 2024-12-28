@@ -5,7 +5,7 @@ const NetflixMainScreen = () => {
     <div style={componentNetflixScreenStyle}>
       {/* Remove the text in next 2 lines */}
       <h2>Netflix Main Screen</h2>
-      <p>This Area is for Netflix movie display</p>  
+      <p>This Area is for Netflix movie display....just added fyi</p>  
     </div>
   );
 };
