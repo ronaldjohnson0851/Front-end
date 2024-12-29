@@ -1,12 +1,12 @@
 import React from 'react';
-import TweetComponent from './TweetComponent';
+// import TweetComponent from './TweetComponent';
 
 const TwittersectionDisplay = () => {
   return (
     <div style={TwitterDisplayStyle}>
-      <h4>What people are saying... </h4>
+{/*       <h4>See What people are saying... </h4> */}
       {/* Add TweetComponent here */}
-       <TweetComponent tweetText="This is an awesome movie!!!!" />
+{/*        <TweetComponent tweetText="This is an awesome movie!!!!" /> */}
     </div>
   );
 };
