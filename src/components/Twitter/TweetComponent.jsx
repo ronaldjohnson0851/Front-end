@@ -1,39 +1,50 @@
 import React, { useState } from 'react';
 
-const TweetComponent = ({ tweetText }) => {
-  const [replies, setReplies] = useState([]);
-  const [replyText, setReplyText] = useState('');
 
-  // Handle adding a reply
-  const addReply = () => {
-    if (replyText.trim() !== '') {
-      setReplies([...replies, replyText]);
-      setReplyText(''); // Clear input
+// ################# Tweet threads ############## //
+/* Stores the thread tweets
+   Input for the new tweet
+   Static user label for demonstration (can be dynamic)
+*/
+const ThreadDiscussion = () => {
+  const [tweets, setTweets] = useState([]);
+  const [tweetText, setTweetText] = useState('');
+  const userLabel = 'User1';
+
+  // Handle adding a new tweet
+  const addTweet = () => {
+    if (tweetText.trim() !== '') {
+      // Add the new tweet with the user label
+      setTweets([...tweets, { user: userLabel, text: tweetText }]);
+      setTweetText(''); // Clear input
     }
   };
 
   return (
     <div style={styles.container}>
-      <div style={styles.tweet}>
-        <p style={styles.tweetText}>{tweetText}</p>
-      </div>
-      <div style={styles.replies}>
-        {replies.map((reply, index) => (
-          <div key={index} style={styles.reply}>
-            {reply}
+      {/* Existing Tweets in the Thread */}
+      <div style={styles.tweetsContainer}>
+        {tweets.map((tweet, index) => (
+          <div key={index} style={styles.tweet}>
+            <div style={styles.tweetContent}>
+              <div style={styles.userLabel}>{tweet.user}</div>
+              <div style={styles.tweetText}>{tweet.text}</div>
+            </div>
           </div>
         ))}
       </div>
-      <div style={styles.replyInputContainer}>
+
+      {/* Input and Button for Adding New Tweet */}
+      <div style={styles.tweetInputContainer}>
         <input
           type="text"
-          placeholder="Write a reply..."
-          value={replyText}
-          onChange={(e) => setReplyText(e.target.value)}
-          style={styles.replyInput}
+          placeholder="Write your tweet..."
+          value={tweetText}
+          onChange={(e) => setTweetText(e.target.value)}
+          style={styles.tweetInput}
         />
-        <button onClick={addReply} style={styles.replyButton}>
-          Reply
+        <button onClick={addTweet} style={styles.tweetButton}>
+          Tweet
         </button>
       </div>
     </div>
@@ -43,40 +54,62 @@ const TweetComponent = ({ tweetText }) => {
 // Styles for the component
 const styles = {
   container: {
-    border: '1px solid #ddd',
-    borderRadius: '8px',
+    border: '1px #566573',
+    borderRadius: '2px',
     padding: '16px',
-    margin: '16px 0',
-    maxWidth: '500px',
+    margin: '16px auto',
+    maxWidth: '600px',
+    backgroundColor: '#1c2833',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
   },
-  tweet: {
+  tweetsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+    gap: '5px',
+    overflowY: 'auto',
+    maxHeight: '400px', // Scrollable if the thread gets long
     padding: '8px 0',
   },
-  tweetText: {
-    fontSize: '16px',
-    fontWeight: 'bold',
+  tweet: {
+    background: '#1c2833',
+    border: '1px solid #566573',
+    borderRadius: '8px',
+    padding: '12px',
+    fontSize: '14px',
+    lineHeight: '1.5',
+    wordWrap: 'break-word',
   },
-  replies: {
-    marginTop: '16px',
-  },
-  reply: {
-    background: '#f4f4f4',
-    borderRadius: '4px',
-    padding: '8px',
-    margin: '4px 0',
-  },
-  replyInputContainer: {
-    marginTop: '16px',
+  tweetContent: {
     display: 'flex',
+    alignItems: 'center',
     gap: '8px',
   },
-  replyInput: {
+  userLabel: {
+    fontSize: '12px',
+    fontWeight: 'bold',
+    color: '#1DA1F2',
+  },
+  tweetText: {
+    color: '#ffffff',
+  },
+  tweetInputContainer: {
+    display: 'flex',
+    height: '100%',
+    alignItems: 'center',
+    gap: '8px',
+    paddingTop: '12px',
+    borderTop: '1px solid #566573',
+  },
+  tweetInput: {
     flex: 1,
     padding: '8px',
     border: '1px solid #ddd',
     borderRadius: '4px',
   },
-  replyButton: {
+  tweetButton: {
     padding: '8px 16px',
     background: '#1DA1F2',
     color: '#fff',
@@ -86,4 +119,4 @@ const styles = {
   },
 };
 
-export default TweetComponent;
+export default ThreadDiscussion;

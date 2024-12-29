@@ -4,19 +4,19 @@ import React from 'react';
 const TwittersectionDisplay = () => {
   return (
     <div style={TwitterDisplayStyle}>
-      <h2>Tweet Your Views</h2>
+{/*       <h4>See What people are saying... </h4> */}
       {/* Add TweetComponent here */}
-      {/* <TweetComponent tweetText="Exploring React components with tweets!" /> */}
-      {/* <TweetComponent tweetText="This is an awesome movie!!!!" /> */}
+{/*        <TweetComponent tweetText="This is an awesome movie!!!!" /> */}
     </div>
   );
 };
 
 const TwitterDisplayStyle = {
   flex: '1', // Occupies 1 part of the row
+  color: 'white',
   height: '100%',
-  backgroundColor: '#f9f9f9',
-  border: '1px solid #ccc',
+  backgroundColor: '#1c2833',
+  border: '1px solid #566573',
   borderRadius: '4px',
   padding: '16px', // Add padding for better layout
 };

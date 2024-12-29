@@ -16,7 +16,6 @@ const componentScrollMovieStyle = {
     height: '200px',
     padding: '0rem',
     border: '1px solid #ccc',
-  
     borderRadius: '2px',
     backgroundColor: '#fff',
   };
