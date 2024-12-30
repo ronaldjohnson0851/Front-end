@@ -1,12 +1,15 @@
 import React from 'react';
 import TweetComponent from './TweetComponent';
+//import AddingReaction from "./AddingReaction"; // Adjust the path based on where TweetInput is located
 
-const TwittersectionDisplay = () => {
+const TwitterSectionDisplay = () => {
   return (
     <div style={TwitterDisplayStyle}>
        <h4>See What people are saying... </h4>
       {/* Add TweetComponent here */}
         <TweetComponent tweetText="This is an awesome movie!!!!" />
+        {/* Add AddingReaction here */}
+{/*               <AddingReaction /> */}
     </div>
   );
 };
@@ -22,4 +25,4 @@ const TwitterDisplayStyle = {
 
 };
 
-export default TwittersectionDisplay;
+export default TwitterSectionDisplay;
