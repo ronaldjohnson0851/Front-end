@@ -1,35 +1,42 @@
 import React, { useState, useEffect } from "react";
+import EmojiPicker from "emoji-picker-react"; // Install with `npm install emoji-picker-react`
 
 const ThreadDiscussion = () => {
   const [tweets, setTweets] = useState([]); // State to store tweets
   const [tweetText, setTweetText] = useState(""); // State for new tweet input
-  const userLabel = "User1"; // Static user label (could be dynamic)
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false); // Toggle emoji picker
+  const userId = "Deepti"; // Static user ID
+  const movieId = "1"; // Static movie ID
 
   // Fetch existing tweets from the database when the component loads
   useEffect(() => {
     const fetchTweets = async () => {
       try {
-        const response = await fetch("/api/tweets"); // Replace with your API endpoint
+        const response = await fetch(`http://localhost:8080/getTweet?movieId=${movieId}`); // Replace with your API endpoint
         if (!response.ok) {
           throw new Error("Failed to fetch tweets");
         }
         const data = await response.json();
-        setTweets(data); // Update state with fetched tweets
+        setTweets(data.tweets); // Update state with fetched tweets
       } catch (error) {
         console.error("Error fetching tweets:", error);
       }
     };
 
     fetchTweets();
-  }, []);
+  }, [movieId]);
 
   // Add a new tweet to the database and update the UI
   const addTweet = async () => {
     if (tweetText.trim() !== "") {
-      const newTweet = { user: userLabel, text: tweetText };
+      const newTweet = {
+        userId,
+        movieId,
+        tweets: [tweetText],
+      };
 
       try {
-        const response = await fetch("/api/tweets", {
+        const response = await fetch("http://localhost:8080/saveTweet", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -41,13 +48,17 @@ const ThreadDiscussion = () => {
           throw new Error("Failed to add tweet");
         }
 
-        const savedTweet = await response.json(); // Get the saved tweet from the response
-        setTweets([...tweets, savedTweet]); // Update the UI with the new tweet
+        setTweets([...tweets, tweetText]); // Append the new tweet to the UI
         setTweetText(""); // Clear the input field
       } catch (error) {
         console.error("Error adding tweet:", error);
       }
     }
+  };
+
+  const handleEmojiClick = (emojiObject) => {
+    setTweetText((prevText) => prevText + emojiObject.emoji);
+    setShowEmojiPicker(false); // Close the emoji picker
   };
 
   return (
@@ -57,8 +68,8 @@ const ThreadDiscussion = () => {
         {tweets.map((tweet, index) => (
           <div key={index} style={styles.tweet}>
             <div style={styles.tweetContent}>
-              <div style={styles.userLabel}>{tweet.user}</div>
-              <div style={styles.tweetText}>{tweet.text}</div>
+              <div style={styles.userLabel}>{userId}</div>
+              <div style={styles.tweetText}>{tweet}</div>
             </div>
           </div>
         ))}
@@ -66,6 +77,12 @@ const ThreadDiscussion = () => {
 
       {/* Input and Button for Adding New Tweet */}
       <div style={styles.tweetInputContainer}>
+        <button
+          onClick={() => setShowEmojiPicker((prev) => !prev)}
+          style={styles.emojiButton}
+        >
+          😊
+        </button>
         <input
           type="text"
           placeholder="Write your tweet..."
@@ -76,6 +93,11 @@ const ThreadDiscussion = () => {
         <button onClick={addTweet} style={styles.tweetButton}>
           Tweet
         </button>
+        {showEmojiPicker && (
+          <div style={styles.emojiPickerContainer}>
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -115,7 +137,7 @@ const styles = {
   },
   tweetContent: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
     gap: "8px",
   },
   userLabel: {
@@ -128,7 +150,6 @@ const styles = {
   },
   tweetInputContainer: {
     display: "flex",
-    height: "100%",
     alignItems: "center",
     gap: "8px",
     paddingTop: "12px",
@@ -148,6 +169,22 @@ const styles = {
     borderRadius: "4px",
     cursor: "pointer",
   },
+  emojiButton: {
+    background: "none",
+    border: "none",
+    fontSize: "20px",
+    cursor: "pointer",
+  },
+    emojiPickerContainer: {
+      position: "absolute",
+      bottom: "40px", // Adjust the value as needed to position it above the button
+
+      zIndex: 10,
+      backgroundColor: "#fff", // Optional: Ensure the emoji picker has a background
+      borderRadius: "8px", // Optional: Add rounded corners for better visuals
+      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Optional: Add a subtle shadow for better appearance
+    },
+
 };
 
 export default ThreadDiscussion;
