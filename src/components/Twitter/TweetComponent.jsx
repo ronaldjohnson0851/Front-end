@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import EmojiPicker from "emoji-picker-react"; // Install with `npm install emoji-picker-react`
 
 const ThreadDiscussion = () => {
@@ -7,6 +7,7 @@ const ThreadDiscussion = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false); // Toggle emoji picker
   const userId = "Deepti"; // Static user ID
   const movieId = "1"; // Static movie ID
+  const tweetListRef = useRef(null); // Reference to tweet list container
 
   // Fetch existing tweets from the database when the component loads
   useEffect(() => {
@@ -25,6 +26,13 @@ const ThreadDiscussion = () => {
 
     fetchTweets();
   }, [movieId]);
+
+  // Scroll to bottom whenever tweets are updated
+  useEffect(() => {
+    if (tweetListRef.current) {
+      tweetListRef.current.scrollTop = tweetListRef.current.scrollHeight;
+    }
+  }, [tweets]); // This runs every time `tweets` state changes
 
   // Add a new tweet to the database and update the UI
   const addTweet = async () => {
@@ -64,7 +72,7 @@ const ThreadDiscussion = () => {
   return (
     <div style={styles.container}>
       {/* Scrollable Tweets */}
-      <div style={styles.tweetList}>
+      <div style={styles.tweetList} ref={tweetListRef}>
         {tweets.map((tweet, index) => (
           <div key={index} style={styles.tweet}>
             <div style={styles.tweetContent}>
@@ -81,7 +89,7 @@ const ThreadDiscussion = () => {
           onClick={() => setShowEmojiPicker((prev) => !prev)}
           style={styles.emojiButton}
         >
-        😊
+          😊
         </button>
         <input
           type="text"
@@ -111,14 +119,14 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     height: "600px", // Fixed height for the container
-    minheight: "600px", /* Ensure it doesn't get too small */
-    maxheight: "1200px", /* Ensure it doesn't get too big */
+    minHeight: "600px", /* Ensure it doesn't get too small */
+    maxHeight: "1200px", /* Ensure it doesn't get too big */
     height: "90vh", /* Default height as a percentage of the viewport */
     backgroundColor: "#1c2833",
     border: "0px",
     borderRadius: "0px",
     overflow: "hidden", // Prevent horizontal overflow
-    padding: "0px"
+    padding: "0px",
   },
   tweetList: {
     flex: 1, // Takes up all available space
@@ -174,12 +182,12 @@ const styles = {
     cursor: "pointer",
   },
   charCount: {
-      color: "lightgrey",
-      fontSize: "12px",
-      margin: "10", // Remove extra space
-      alignSelf: "flex-start", // Aligns text to the left
-      padding: "5px"
-    },
+    color: "lightgrey",
+    fontSize: "12px",
+    margin: "10", // Remove extra space
+    alignSelf: "flex-start", // Aligns text to the left
+    padding: "5px",
+  },
   emojiButton: {
     background: "none",
     padding: "0px",
