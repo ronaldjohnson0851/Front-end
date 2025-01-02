@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../Logos and icons/FLIXXER.png'; // Adjust the path to where your logo is located
+import logo from '../Logos and icons/FLIXXER.png'; 
 
 const MainHeader = () => {
   return (
