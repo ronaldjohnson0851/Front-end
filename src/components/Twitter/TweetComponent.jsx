@@ -95,7 +95,10 @@ const ThreadDiscussion = () => {
       <div style={styles.tweetList} ref={tweetListRef}>
         {filteredTweets.map((tweet, index) => (
           <div key={index} style={styles.tweet}>
-            {tweet}
+            <div style={styles.tweetContent}>
+              <div style={styles.userLabel}>{userId}</div>
+               <div style={styles.tweetText}>{tweet}</div>
+            </div>
           </div>
         ))}
       </div>
@@ -133,57 +136,91 @@ const ThreadDiscussion = () => {
 // Styles
 const styles = {
   container: {
-    display: "flex",
-    flexDirection: "column",
-    height: "600px",
-    backgroundColor: "#1c2833",
-    overflow: "hidden",
-  },
+      display: "flex",
+      flexDirection: "column",
+      height: "600px", // Fixed height for the container
+      minHeight: "600px", /* Ensure it doesn't get too small */
+      maxHeight: "1200px", /* Ensure it doesn't get too big */
+      height: "90vh", /* Default height as a percentage of the viewport */
+      backgroundColor: "#1c2833",
+      border: "0px",
+      borderRadius: "0px",
+      overflow: "hidden", // Prevent horizontal overflow
+      padding: "0px",
+    },
   tweetList: {
-    flex: 1,
-    overflowY: "auto",
-    padding: "8px",
-  },
-  tweet: {
-    background: "#2c3e50",
-    borderRadius: "8px",
-    padding: "8px",
-    fontSize: "14px",
-    marginBottom: "4px",
-    color: "#fff",
-  },
+      flex: 1, // Takes up all available space
+      overflowY: "auto", // Enables scrolling for overflowing content
+      padding: "8px",
+    },
+    tweet: {
+      background: "#2c3e50",
+      border: "0px",
+      borderRadius: "8px",
+      padding: "8px",
+      fontSize: "14px",
+      lineHeight: "1.5",
+      wordWrap: "break-word",
+      marginBottom: "4px",
+    },
+    tweetContent: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "4px",
+    },
+    userLabel: {
+      fontSize: "12px",
+      fontWeight: "bold",
+      color: "#1DA1F2",
+    },
+    tweetText: {
+      color: "#ffffff",
+    },
   inputSection: {
-    display: "flex",
-    alignItems: "center",
-    padding: "5px",
-    backgroundColor: "#1c2833",
-    borderTop: "1px solid #566573",
-  },
-  tweetInput: {
-    flex: 1,
-    padding: "8px",
-    border: "1px solid #ddd",
-    borderRadius: "4px",
-  },
-  tweetButton: {
-    padding: "8px",
-    background: "#1DA1F2",
-    color: "#fff",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-  },
+      display: "flex",
+      alignItems: "center",
+      maxHeight: "100%",
+      gap: "5px",
+      padding: "5px",
+      backgroundColor: "#1c2833",
+      borderTop: "1px solid #566573",
+    },
+    tweetInput: {
+      flex: 1,
+      padding: "8px",
+      marginTop: "5px",
+      border: "1px solid #ddd",
+      borderRadius: "4px",
+    },
+   tweetButton: {
+      padding: "8px 8px",
+      marginTop: "5px",
+      background: "#1DA1F2",
+      color: "#fff",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "pointer",
+    },
   charCount: {
     color: "lightgrey",
     fontSize: "12px",
     padding: "5px",
   },
   emojiButton: {
-    background: "none",
-    border: "none",
-    fontSize: "20px",
-    cursor: "pointer",
-  },
+      background: "none",
+      padding: "0px",
+      border: "none",
+      fontSize: "20px",
+      cursor: "pointer",
+    },
+    emojiPickerContainer: {
+      position: "absolute",
+      bottom: "100px",
+      zIndex: 10,
+      backgroundColor: "#fff",
+      borderRadius: "6px",
+      boxShadow: "1px 4px 6px rgba(0, 0, 0, 0.1)",
+    },
 };
 
 export default ThreadDiscussion;
