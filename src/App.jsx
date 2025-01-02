@@ -50,7 +50,6 @@ const AppLayout = () => {
         {/* Netflix Column */}
         <div style={netflixColumn}>
           <NetflixMainScreen />
-          <NetflixMovieScroll />
         </div>
 
         {/* Twitter Section */}
