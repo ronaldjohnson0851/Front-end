@@ -81,17 +81,18 @@ const ThreadDiscussion = () => {
           onClick={() => setShowEmojiPicker((prev) => !prev)}
           style={styles.emojiButton}
         >
-          😊
+        😊
         </button>
         <input
           type="text"
           placeholder="Write your tweet..."
           value={tweetText}
+          maxLength={255} // Sets the character limit
           onChange={(e) => setTweetText(e.target.value)}
           style={styles.tweetInput}
         />
         <button onClick={addTweet} style={styles.tweetButton}>
-          Tweet
+          Send
         </button>
         {showEmojiPicker && (
           <div style={styles.emojiPickerContainer}>
@@ -99,6 +100,7 @@ const ThreadDiscussion = () => {
           </div>
         )}
       </div>
+      <p style={styles.charCount}>{255 - tweetText.length} Characters left</p>
     </div>
   );
 };
@@ -109,15 +111,14 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     height: "600px", // Fixed height for the container
-    //maxWidth: "600px",
     minheight: "600px", /* Ensure it doesn't get too small */
     maxheight: "1200px", /* Ensure it doesn't get too big */
-    height: "85vh", /* Default height as a percentage of the viewport */
-    margin: "0 auto",
+    height: "90vh", /* Default height as a percentage of the viewport */
     backgroundColor: "#1c2833",
     border: "0px",
     borderRadius: "0px",
     overflow: "hidden", // Prevent horizontal overflow
+    padding: "0px"
   },
   tweetList: {
     flex: 1, // Takes up all available space
@@ -151,27 +152,37 @@ const styles = {
     display: "flex",
     alignItems: "center",
     maxHeight: "100%",
-    gap: "8px",
-    padding: "12px",
+    gap: "5px",
+    padding: "5px",
     backgroundColor: "#1c2833",
     borderTop: "1px solid #566573",
   },
   tweetInput: {
     flex: 1,
     padding: "8px",
+    marginTop: "5px",
     border: "1px solid #ddd",
     borderRadius: "4px",
   },
   tweetButton: {
-    padding: "8px 16px",
+    padding: "8px 8px",
+    marginTop: "5px",
     background: "#1DA1F2",
     color: "#fff",
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
   },
+  charCount: {
+      color: "lightgrey",
+      fontSize: "12px",
+      margin: "10", // Remove extra space
+      alignSelf: "flex-start", // Aligns text to the left
+      padding: "5px"
+    },
   emojiButton: {
     background: "none",
+    padding: "0px",
     border: "none",
     fontSize: "20px",
     cursor: "pointer",

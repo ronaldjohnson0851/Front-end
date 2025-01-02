@@ -36,7 +36,7 @@ const styles = {
     backgroundColor: "#1c2833",
     border: "1px solid #566573",
     borderRadius: "4px",
-    padding: "12px",
+    padding: "0px",
   },
   twitterDisplay: {
     marginTop: "0px", // Add margin below the button for spacing
