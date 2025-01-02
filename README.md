@@ -5,7 +5,20 @@ It handles video playback, commenting, and an integrated Twitter-like feed.
 # Key Features
 •Video Library: View a list of all videos, filter Generes, and search.
 •Video Playback: Stream videos with the ability to playback.
-•Twitter Feed: allowing you to tweet, use hashtags, post with images, @ friends, and see a timeline.
+
+•Twitter Feed: 
+* As a user, (not logged in) I
+  can view list of all tweets from all users.
+* As a user, (logged in) I
+  can post a new tweet (limited to 255 chars)
+* Use hashtags
+* Tag friends using @  
+* View twitter timeline
+* Post images
+* Can view tweets by a specific user.
+* All new tweets come in feed as they are posted.
+
+
 
 
 # Technologies Used
