@@ -7,22 +7,23 @@ const TwitterSectionDisplay = () => {
   return (
     <div style={styles.container}>
       {/* Collapse Button */}
-      <button
+     {/*  <button
 
         onClick={() => setIsCollapsed((prev) => !prev)}
         style={styles.collapseButton}
       >
         {isCollapsed ? "+" : "--"}
-{/*         <h4>See What People Are Saying...</h4> */}
+ */}{/*        {/* <h4>Hello {userName}</h4> */} {/*
       </button>
-
+ */}
       {/* Collapsible Section */}
-      {!isCollapsed && (
-        <div style={styles.twitterDisplay}>
-          <h4>See What People Are Saying...</h4>
+{/*       {!isCollapsed && ( */}
+
+
+        <div style={styles.twitterDisplay}>         
           <TweetComponent/>
         </div>
-      )}
+{/*       )} */}
     </div>
   );
 };
@@ -31,14 +32,14 @@ const styles = {
   container: {
     flex: "1",
     color: "white",
-    height: "100%",
+    height: "100vh",
     backgroundColor: "#1c2833",
     border: "1px solid #566573",
     borderRadius: "4px",
-    padding: "16px",
+    padding: "12px",
   },
   twitterDisplay: {
-    marginTop: "16px", // Add margin below the button for spacing
+    marginTop: "0px", // Add margin below the button for spacing
   },
   collapseButton: {
     position: "relative",

@@ -63,8 +63,8 @@ const ThreadDiscussion = () => {
 
   return (
     <div style={styles.container}>
-      {/* Existing Tweets */}
-      <div style={styles.tweetsContainer}>
+      {/* Scrollable Tweets */}
+      <div style={styles.tweetList}>
         {tweets.map((tweet, index) => (
           <div key={index} style={styles.tweet}>
             <div style={styles.tweetContent}>
@@ -75,8 +75,8 @@ const ThreadDiscussion = () => {
         ))}
       </div>
 
-      {/* Input and Button for Adding New Tweet */}
-      <div style={styles.tweetInputContainer}>
+      {/* Input Section Fixed at Bottom */}
+      <div style={styles.inputSection}>
         <button
           onClick={() => setShowEmojiPicker((prev) => !prev)}
           style={styles.emojiButton}
@@ -103,42 +103,41 @@ const ThreadDiscussion = () => {
   );
 };
 
-// Styles for the component
+// Updated Styles
 const styles = {
   container: {
-    border: "1px #566573",
-    borderRadius: "2px",
-    padding: "16px",
-    margin: "16px auto",
-    maxWidth: "600px",
+    display: "flex",
+    flexDirection: "column",
+    height: "600px", // Fixed height for the container
+    //maxWidth: "600px",
+    minheight: "600px", /* Ensure it doesn't get too small */
+    maxheight: "1200px", /* Ensure it doesn't get too big */
+    height: "85vh", /* Default height as a percentage of the viewport */
+    margin: "0 auto",
     backgroundColor: "#1c2833",
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
+    border: "0px",
+    borderRadius: "0px",
+    overflow: "hidden", // Prevent horizontal overflow
   },
-  tweetsContainer: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "auto",
-    height: "100vh",
-    gap: "5px",
-    overflowY: "auto",
-    maxHeight: "400px",
-    padding: "8px 0",
+  tweetList: {
+    flex: 1, // Takes up all available space
+    overflowY: "auto", // Enables scrolling for overflowing content
+    padding: "8px",
   },
   tweet: {
-    background: "#1c2833",
-    border: "1px solid #566573",
+    background: "#2c3e50",
+    border: "0px",
     borderRadius: "8px",
-    padding: "12px",
+    padding: "8px",
     fontSize: "14px",
     lineHeight: "1.5",
     wordWrap: "break-word",
+    marginBottom: "4px",
   },
   tweetContent: {
     display: "flex",
     flexDirection: "column",
-    gap: "8px",
+    gap: "4px",
   },
   userLabel: {
     fontSize: "12px",
@@ -148,16 +147,18 @@ const styles = {
   tweetText: {
     color: "#ffffff",
   },
-  tweetInputContainer: {
+  inputSection: {
     display: "flex",
     alignItems: "center",
+    maxHeight: "100%",
     gap: "8px",
-    paddingTop: "12px",
+    padding: "12px",
+    backgroundColor: "#1c2833",
     borderTop: "1px solid #566573",
   },
   tweetInput: {
     flex: 1,
-    padding: "10px",
+    padding: "8px",
     border: "1px solid #ddd",
     borderRadius: "4px",
   },
@@ -175,16 +176,14 @@ const styles = {
     fontSize: "20px",
     cursor: "pointer",
   },
-    emojiPickerContainer: {
-      position: "absolute",
-      bottom: "40px", // Adjust the value as needed to position it above the button
-
-      zIndex: 10,
-      backgroundColor: "#fff", // Optional: Ensure the emoji picker has a background
-      borderRadius: "8px", // Optional: Add rounded corners for better visuals
-      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Optional: Add a subtle shadow for better appearance
-    },
-
+  emojiPickerContainer: {
+    position: "absolute",
+    bottom: "60px",
+    zIndex: 10,
+    backgroundColor: "#fff",
+    borderRadius: "6px",
+    boxShadow: "1px 4px 6px rgba(0, 0, 0, 0.1)",
+  },
 };
 
 export default ThreadDiscussion;
