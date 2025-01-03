@@ -142,7 +142,7 @@ const styles = {
       minHeight: "600px", /* Ensure it doesn't get too small */
       maxHeight: "1200px", /* Ensure it doesn't get too big */
       height: "90vh", /* Default height as a percentage of the viewport */
-      backgroundColor: "#1c2833",
+      backgroundColor: "#000000",
       border: "0px",
       borderRadius: "0px",
       overflow: "hidden", // Prevent horizontal overflow
@@ -154,7 +154,7 @@ const styles = {
       padding: "8px",
     },
     tweet: {
-      background: "#2c3e50",
+      background: "#282829",
       border: "0px",
       borderRadius: "8px",
       padding: "8px",
@@ -182,8 +182,8 @@ const styles = {
       maxHeight: "100%",
       gap: "5px",
       padding: "5px",
-      backgroundColor: "#1c2833",
-      borderTop: "1px solid #566573",
+      backgroundColor: "#000000",
+      borderTop: "1px solid #000000",
     },
     tweetInput: {
       flex: 1,

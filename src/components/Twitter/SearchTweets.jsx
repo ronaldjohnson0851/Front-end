@@ -32,7 +32,7 @@ const SearchTweets = ({ onSearch }) => {
 const styles = {
   searchContainer: {
     padding: "8px",
-    backgroundColor: "#2c3e50",
+    backgroundColor: "#000000",
   },
   searchInput: {
     width: "95%",
@@ -40,7 +40,7 @@ const styles = {
     borderRadius: "4px",
     border: "1px solid #ddd",
     color: "#fff",
-    backgroundColor: "#1c2833",
+    backgroundColor: "#000000",
   },
 };
 
