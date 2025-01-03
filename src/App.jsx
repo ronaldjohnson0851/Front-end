@@ -1,7 +1,7 @@
 import React from 'react';
 import MainHeader from './components/MainPageHeader/MainHeader';
 import NetflixMainScreen from './components/NetflixMainScreen/NetflixMainScreen';
-import NetflixMovieScroll from './components/NetflixScrollMovies/NetflixMovieScroll';
+import NetflixMovieScroll from './components/NetflixMainScreen/NetflixMovieScroll';
 import TwittersectionDisplay from './components/Twitter/Twitter';
 
 const AppLayout = () => {
@@ -50,6 +50,7 @@ const AppLayout = () => {
         {/* Netflix Column */}
         <div style={netflixColumn}>
           <NetflixMainScreen />
+        
         </div>
 
         {/* Twitter Section */}
