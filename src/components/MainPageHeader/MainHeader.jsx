@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../Logos and icons/Final ProjectLogo.png'; // Adjust the path to where your logo is located
+import logo from '../Logos and icons/FLIXXER.png'; 
 
 const MainHeader = () => {
   return (
@@ -12,7 +12,7 @@ const MainHeader = () => {
 const headerStyle = {
   width: '100%',
   height: '60px',
-  backgroundColor: '#282c34',
+  backgroundColor: '#000000',
   color: 'white',
   display: 'flex',
   alignItems: 'center',
@@ -23,7 +23,8 @@ const headerStyle = {
 
 const logoStyle = {
   height: '60px', // Adjust the height to fit the header
-  marginRight: '1rem', // Space between logo and text
+  marginRight: '2rem', // Space between logo and text
+  padding: '1.5rem'
 };
 
 const titleStyle = {
