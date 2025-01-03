@@ -37,7 +37,7 @@ const AppLayout = () => {
   const twitterSection = {
     flex: 1, // Allocate smaller space to Twitter section
     marginLeft: '0rem', // Adds spacing between columns
-    overflowY: 'auto', // Allow scrolling if content overflows
+   // overflowY: 'auto', // Allow scrolling if content overflows
   };
 
   return (
@@ -50,7 +50,6 @@ const AppLayout = () => {
         {/* Netflix Column */}
         <div style={netflixColumn}>
           <NetflixMainScreen />
-          <NetflixMovieScroll />
         </div>
 
         {/* Twitter Section */}
