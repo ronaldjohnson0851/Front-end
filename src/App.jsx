@@ -32,6 +32,7 @@ const AppLayout = () => {
     flexDirection: 'column',
     flex: 3, // Allocate more space to Netflix section
     gap: '1rem', // Add spacing between the two Netflix components
+    overflowY: 'auto',
   };
 
   const twitterSection = {
@@ -50,7 +51,7 @@ const AppLayout = () => {
         {/* Netflix Column */}
         <div style={netflixColumn}>
           <NetflixMainScreen />
-          <NetflixMovieScroll/>
+{/*           <NetflixMovieScroll/> */}
         </div>
 
         {/* Twitter Section */}
