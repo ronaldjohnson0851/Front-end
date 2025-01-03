@@ -18,7 +18,6 @@ const NetflixMainScreen = () => {
     <div style={componentNetflixScreenStyle}>
       {/* Remove the text in next 2 lines */}
       <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-      <NetflixMovieScroll />
     </div>
   );
 };
