@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 
 
+
 const NetflixMovieScroll = () => {
   // Sample movie data
   const movies = [
-    { id: 1, title: 'Die Hard', thumbnail: 'Flixxer_1.jpg', videoUrl: 'https://www.youtube.com/watch?v=jaJuwKCmJbY' },
+    { id: 1, title: 'Die Hard', thumbnail: '/Flixxer_1.jpg', videoUrl: 'https://www.youtube.com/watch?v=jaJuwKCmJbY' },
     { id: 2, title: 'Movie 2', thumbnail: 'https://via.placeholder.com/150', videoUrl: 'https://www.example.com/movie2.mp4' },
     { id: 3, title: 'Movie 3', thumbnail: 'https://via.placeholder.com/150', videoUrl: 'https://www.example.com/movie3.mp4' },
     { id: 4, title: 'Movie 3', thumbnail: 'https://via.placeholder.com/150', videoUrl: 'https://www.example.com/movie3.mp4' },
-    
-
-
-
     // Add more movies here...
   ];
 
