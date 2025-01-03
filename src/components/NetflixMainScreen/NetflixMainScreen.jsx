@@ -2,6 +2,7 @@ import React from 'react';
 import EmblaCarousel from './EmblaCarousel.tsx';
 import { EmblaOptionsType } from 'embla-carousel'
 import './embla.css';
+import NetflixMovieScroll from './NetflixMovieScroll.jsx';
 
 
 const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true }
@@ -15,8 +16,8 @@ const SLIDE_COUNT = 5
 const NetflixMainScreen = () => {
   return (
     <div style={componentNetflixScreenStyle}>
+      {/* Remove the text in next 2 lines */}
       <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-      <h1>Continue Watching</h1>
     </div>
   );
 };
