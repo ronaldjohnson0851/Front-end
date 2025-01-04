@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-
-const NetflixMovieScroll = ({ movies }) => {
+const NetflixMovieScroll = ({ title, movies }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleThumbnailClick = (movie) => {
     setSelectedMovie(movie);
-    };
+  };
 
   const handleClosePlayer = () => {
     setSelectedMovie(null);
@@ -14,9 +13,12 @@ const NetflixMovieScroll = ({ movies }) => {
 
   return (
     <div style={containerStyle}>
+      {title && <h2 style={titleStyle}>{title}</h2>}
       {selectedMovie ? (
         <div style={playerContainerStyle}>
-          <button style={closeButtonStyle} onClick={handleClosePlayer}>Close</button>
+          <button style={closeButtonStyle} onClick={handleClosePlayer}>
+            Close
+          </button>
           <video style={videoStyle} src={selectedMovie.videoUrl} controls autoPlay />
         </div>
       ) : (
@@ -39,20 +41,22 @@ const NetflixMovieScroll = ({ movies }) => {
 // Styles
 const containerStyle = {
   width: '100%',
-  height: '220px',
-  position: 'relative',
+  padding: '10px',
   backgroundColor: '#000',
-  overflowY: 'hidden',
+};
+
+const titleStyle = {
+  color: '#fff',
+  fontSize: '1.5rem',
+  marginBottom: '10px',
 };
 
 const scrollableStyle = {
   display: 'flex',
   overflowX: 'auto',
   gap: '10px',
-  padding: '10px',
-  height: '100%',
+  padding: '10px 0',
   alignItems: 'center',
-  scrollbarWidth: 'none',
 };
 
 const thumbnailStyle = {
