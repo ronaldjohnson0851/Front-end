@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
 
-
-const NetflixMovieScroll = () => {
-  // Sample movie data
-  const movies = [
-    { id: 1, title: 'Die Hard', thumbnail: 'Flixxer_1.jpg', videoUrl: 'https://www.youtube.com/watch?v=jaJuwKCmJbY' },
-    { id: 2, title: 'Movie 2', thumbnail: 'https://via.placeholder.com/150', videoUrl: 'https://www.example.com/movie2.mp4' },
-    { id: 3, title: 'Movie 3', thumbnail: 'https://via.placeholder.com/150', videoUrl: 'https://www.example.com/movie3.mp4' },
-    { id: 4, title: 'Movie 3', thumbnail: 'https://via.placeholder.com/150', videoUrl: 'https://www.example.com/movie3.mp4' },
-    
-
-
-
-    // Add more movies here...
-  ];
-
+const NetflixMovieScroll = ({ title, movies }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleThumbnailClick = (movie) => {
@@ -27,9 +13,12 @@ const NetflixMovieScroll = () => {
 
   return (
     <div style={containerStyle}>
+      {title && <h2 style={titleStyle}>{title}</h2>}
       {selectedMovie ? (
         <div style={playerContainerStyle}>
-          <button style={closeButtonStyle} onClick={handleClosePlayer}>Close</button>
+          <button style={closeButtonStyle} onClick={handleClosePlayer}>
+            Close
+          </button>
           <video style={videoStyle} src={selectedMovie.videoUrl} controls autoPlay />
         </div>
       ) : (
@@ -52,23 +41,27 @@ const NetflixMovieScroll = () => {
 // Styles
 const containerStyle = {
   width: '100%',
-  height: '300px',
-  position: 'relative',
+  padding: '10px',
   backgroundColor: '#000',
+};
+
+const titleStyle = {
+  color: '#fff',
+  fontSize: '1.5rem',
+  marginBottom: '10px',
 };
 
 const scrollableStyle = {
   display: 'flex',
   overflowX: 'auto',
   gap: '10px',
-  padding: '10px',
-  height: '100%',
+  padding: '10px 0',
   alignItems: 'center',
 };
 
 const thumbnailStyle = {
-  width: '150px',
-  height: '200px',
+  width: '220px',
+  height: '121px',
   cursor: 'pointer',
   borderRadius: '5px',
   objectFit: 'cover',

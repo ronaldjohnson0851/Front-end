@@ -2,7 +2,7 @@ import React from 'react';
 import MainHeader from './components/MainPageHeader/MainHeader';
 import NetflixMainScreen from './components/NetflixMainScreen/NetflixMainScreen';
 import NetflixMovieScroll from './components/NetflixMainScreen/NetflixMovieScroll';
-import TwittersectionDisplay from './components/Twitter/Twitter';
+import TwitterSectionDisplay from './components/Twitter/Twitter';
 
 const AppLayout = () => {
   const layoutStyle = {
@@ -32,6 +32,7 @@ const AppLayout = () => {
     flexDirection: 'column',
     flex: 3, // Allocate more space to Netflix section
     gap: '1rem', // Add spacing between the two Netflix components
+    overflowY: 'auto',
   };
 
   const twitterSection = {
@@ -50,12 +51,12 @@ const AppLayout = () => {
         {/* Netflix Column */}
         <div style={netflixColumn}>
           <NetflixMainScreen />
-          <NetflixMovieScroll/>
+{/*           <NetflixMovieScroll/> */}
         </div>
 
         {/* Twitter Section */}
         <div style={twitterSection}>
-          <TwittersectionDisplay />
+          <TwitterSectionDisplay />
         </div>
       </div>
     </div>
