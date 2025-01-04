@@ -30,7 +30,7 @@ const NetflixMainScreen = () => {
           { id: 3, title: 'Interstellar', thumbnail: '/video-thumbnails/Interstellar.png', videoUrl: 'https://www.example.com/movie3.mp4' },
           { id: 4, title: 'Prince of Egypt', thumbnail: '/video-thumbnails/Prince of Egypt.png', videoUrl: 'https://www.example.com/movie3.mp4' },
         ];
-
+//ddd
   return (
     <div style={componentNetflixScreenStyle}>
       {/* Remove the text in next 2 lines */}
