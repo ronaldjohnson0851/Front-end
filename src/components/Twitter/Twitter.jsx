@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import TweetComponent from "./TweetComponent";
 
 const TwitterSectionDisplay = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false); // State to toggle visibility
+  //********* This is only to test tweet display based on movieId being passed as a prop ******/
+  const movieId = "1"; // Replace with dynamic logic or static value as needed
 
   return (
     <div style={styles.container}>
         <div style={styles.twitterDisplay}>         
-          <TweetComponent/>
+          <TweetComponent movieId={movieId} />
         </div>
     </div>
   );
@@ -26,16 +27,7 @@ const styles = {
   twitterDisplay: {
     marginTop: "0px", // Add margin below the button for spacing
   },
-  collapseButton: {
-    position: "relative",
-    padding: "4px 6px",
-    backgroundColor: "#1DA1F2",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
 
-  },
 };
 
 export default TwitterSectionDisplay;

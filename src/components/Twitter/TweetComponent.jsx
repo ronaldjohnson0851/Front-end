@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import EmojiPicker from "emoji-picker-react";
 import SearchByText from "./SearchByText";
+import SearchByHashtag from "./SearchByHashtag";
 
 const ThreadDiscussion = ({ movieId }) => {
   const [tweets, setTweets] = useState([]);
@@ -23,8 +24,8 @@ const ThreadDiscussion = ({ movieId }) => {
         console.error("Error fetching tweets:", error);
       }
     };
-      fetchTweets();
 
+    fetchTweets();
   }, [movieId]);
 
   useEffect(() => {
@@ -45,16 +46,17 @@ const ThreadDiscussion = ({ movieId }) => {
     }
   };
 
-  const handleTweetInputChange = async (e) => {
+  const handleTweetInputChange = (e) => {
     const value = e.target.value;
     setTweetText(value);
+    handleHashtagInput(value);
+  };
 
-    const hashtagMatch = value.match(/#(\w+)$/);
-    if (hashtagMatch) {
-      const term = hashtagMatch[1];
+  const handleHashtagInput = (text) => {
+    if (text.match(/#\w+$/)) {
+      const term = text.split("#").pop();
       if (term.length > 1) {
-        const suggestedHashtags = await fetchSuggestions(term);
-        setSuggestions(suggestedHashtags);
+        fetchSuggestions(term).then((suggestedHashtags) => setSuggestions(suggestedHashtags));
       } else {
         setSuggestions([]);
       }
@@ -135,19 +137,10 @@ const ThreadDiscussion = ({ movieId }) => {
           onChange={handleTweetInputChange}
           style={styles.tweetInput}
         />
-        {suggestions.length > 0 && (
-          <ul style={styles.suggestionsList}>
-            {suggestions.map((suggestion, index) => (
-              <li
-                key={index}
-                style={styles.suggestionItem}
-                onClick={() => handleSuggestionClick(suggestion)}
-              >
-                #{suggestion}
-              </li>
-            ))}
-          </ul>
-        )}
+        <SearchByHashtag
+          fetchSuggestions={fetchSuggestions}
+          onHashtagSelect={handleSuggestionClick}
+        />
         <button onClick={addTweet} style={styles.tweetButton}>
           Send
         </button>
@@ -161,6 +154,7 @@ const ThreadDiscussion = ({ movieId }) => {
     </div>
   );
 };
+
 
 // Styles
 const styles = {
