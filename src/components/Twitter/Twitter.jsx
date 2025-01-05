@@ -6,24 +6,9 @@ const TwitterSectionDisplay = () => {
 
   return (
     <div style={styles.container}>
-      {/* Collapse Button */}
-     {/*  <button
-
-        onClick={() => setIsCollapsed((prev) => !prev)}
-        style={styles.collapseButton}
-      >
-        {isCollapsed ? "+" : "--"}
- */}{/*        {/* <h4>Hello {userName}</h4> */} {/*
-      </button>
- */}
-      {/* Collapsible Section */}
-{/*       {!isCollapsed && ( */}
-
-
         <div style={styles.twitterDisplay}>         
           <TweetComponent/>
         </div>
-{/*       )} */}
     </div>
   );
 };

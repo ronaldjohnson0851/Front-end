@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 
-const SearchTweets = ({ onSearch }) => {
+const SearchByText = ({ onSearch }) => {
   const [searchText, setSearchText] = useState("");
 
-  const handleSearch = (e) => {
+  const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchText(value);
-
-    // Trigger search for hashtags
-    if (value.startsWith("#") && value.length > 1) {
-      const searchTerm = value.slice(1); // Remove #
-      onSearch(searchTerm); // Pass search term to parent
-    } else {
-      onSearch(""); // Clear search
-    }
+    onSearch(value); // Trigger search with the entered text
   };
 
   return (
@@ -21,8 +14,8 @@ const SearchTweets = ({ onSearch }) => {
       <input
         type="text"
         value={searchText}
-        onChange={handleSearch}
-        placeholder="Search tweets with #hashtags..."
+        onChange={handleSearchChange}
+        placeholder="Search tweets..."
         style={styles.searchInput}
       />
     </div>
@@ -32,7 +25,7 @@ const SearchTweets = ({ onSearch }) => {
 const styles = {
   searchContainer: {
     padding: "8px",
-    backgroundColor: "#000000",
+    backgroundColor: "#000",
   },
   searchInput: {
     width: "95%",
@@ -40,8 +33,8 @@ const styles = {
     borderRadius: "4px",
     border: "1px solid #ddd",
     color: "#fff",
-    backgroundColor: "#000000",
+    backgroundColor: "#000",
   },
 };
 
-export default SearchTweets;
+export default SearchByText;
