@@ -72,8 +72,10 @@ const ThreadDiscussion = ({ movieId }) => {
   };
 
   const handleSearchByText = (searchText) => {
-    const filtered = tweets.filter((tweet) =>
-      tweet.tweet.toLowerCase().includes(searchText.toLowerCase())
+    const filtered = tweets.filter(
+      (tweet) =>
+        tweet.tweet.toLowerCase().includes(searchText.toLowerCase()) ||
+        tweet.userId.toLowerCase().includes(searchText.toLowerCase())
     );
     setFilteredTweets(filtered);
   };
@@ -108,7 +110,6 @@ const ThreadDiscussion = ({ movieId }) => {
 
   return (
     <div style={styles.container}>
-      {/* Search By Text */}
       <SearchByText onSearch={handleSearchByText} />
 
       <div style={styles.tweetList} ref={tweetListRef}>

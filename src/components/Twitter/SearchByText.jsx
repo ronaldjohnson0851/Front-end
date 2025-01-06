@@ -5,8 +5,8 @@ const SearchByText = ({ onSearch }) => {
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
-    setSearchText(value);
-    onSearch(value); // Trigger search with the entered text
+    setSearchText(value); // Update the local state
+    onSearch(value); // Trigger the search function passed as a prop
   };
 
   return (
@@ -15,7 +15,7 @@ const SearchByText = ({ onSearch }) => {
         type="text"
         value={searchText}
         onChange={handleSearchChange}
-        placeholder="Search tweets..."
+        placeholder="Search tweets or usernames..."
         style={styles.searchInput}
       />
     </div>
@@ -28,7 +28,7 @@ const styles = {
     backgroundColor: "#000",
   },
   searchInput: {
-    width: "95%",
+    width: "100%",
     padding: "8px",
     borderRadius: "4px",
     border: "1px solid #ddd",
