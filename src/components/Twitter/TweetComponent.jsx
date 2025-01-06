@@ -137,10 +137,11 @@ const ThreadDiscussion = ({ movieId }) => {
           onChange={handleTweetInputChange}
           style={styles.tweetInput}
         />
-        <SearchByHashtag
-          fetchSuggestions={fetchSuggestions}
-          onHashtagSelect={handleSuggestionClick}
-        />
+       <SearchByHashtag
+         fetchSuggestions={fetchSuggestions}
+         text={tweetText}
+         setText={setTweetText}
+       />
         <button onClick={addTweet} style={styles.tweetButton}>
           Send
         </button>
@@ -244,24 +245,7 @@ const styles = {
     borderRadius: "6px",
     boxShadow: "1px 4px 6px rgba(0, 0, 0, 0.1)",
   },
-  suggestionsList: {
-    position: "absolute",
-    top: "100%",
-    left: 0,
-    width: "100%",
-    backgroundColor: "#000",
-    border: "1px solid #ddd",
-    borderRadius: "4px",
-    margin: "0",
-    padding: "0",
-    listStyle: "none",
-    zIndex: 10,
-  },
-  suggestionItem: {
-    padding: "8px",
-    cursor: "pointer",
-    color: "#fff",
-  },
+
 };
 
 export default ThreadDiscussion;

@@ -3,7 +3,7 @@ import TweetComponent from "./TweetComponent";
 
 const TwitterSectionDisplay = () => {
   //********* This is only to test tweet display based on movieId being passed as a prop ******/
-  const movieId = "1"; // Replace with dynamic logic or static value as needed
+  const movieId = ""; // Replace with dynamic logic or static value as needed
 
   return (
     <div style={styles.container}>
