@@ -42,15 +42,15 @@ const headerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '.5rem',
-  paddingTop: '1rem',
+  padding: '0rem',
 };
 
 
 const logoStyle = {
   height: '60px', // Adjust the height to fit the header
   marginRight: '2rem', // Space between logo and text
-  padding: '.5rem'
+  padding: '.5rem',
+  paddingTop: '1.5rem',
 };
 
 const titleStyle = {
@@ -62,7 +62,8 @@ const profileContainerStyle = {
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer', // Show pointer cursor on hover
-  padding: '.5rem'
+  padding: '.5rem',
+  paddingTop: '1.5rem',
 };
 
 const profileImageStyle = {
