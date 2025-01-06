@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from '../Logos and icons/FLIXXER.png';
+import HeaderMenu from './HeaderMenu';
 
 const MainHeader = () => {
   return (
     <header style={headerStyle}>
       <img src={logo} alt="Logo" style={logoStyle} />
+      <HeaderMenu/>
     </header>
   );
 };
