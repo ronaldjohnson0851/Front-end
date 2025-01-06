@@ -30,7 +30,7 @@ const NetflixMainScreen = () => {
         },
         { 
             id: 2, 
-            views: '50k',
+            views: '45k',
             posts: '1k',
             likes: '6k',
             title: '30 Days of Night', 
