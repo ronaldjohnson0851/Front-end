@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const NetflixMovieScroll = ({ title, movies }) => {
+
+const NetflixMovieScroll = ({ title, movies = [] }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
+    const navigate = useNavigate();
 
-  const handleThumbnailClick = (movie) => {
-    setSelectedMovie(movie);
+  const handleThumbnailClick = (movieId) => {
+    // Navigate to the movie detail page based on movie ID
+    navigate(`/movie/${movieId}`);
   };
 
   const handleClosePlayer = () => {
@@ -14,30 +18,8 @@ const NetflixMovieScroll = ({ title, movies }) => {
   return (
     <div style={containerStyle}>
       {title && <h2 style={titleStyle}>{title}</h2>}
-      {selectedMovie ? (
-        <div style={movieDetailStyle}>
-          <button style={closeButtonStyle} onClick={handleClosePlayer}>
-            Close
-          </button>ß
-          <div style={videoSectionStyle}>
-            <video style={videoStyle} src={selectedMovie.videoUrl} controls autoPlay />
-            <div style={detailsStyle}>
-              <h3 style={movieTitleStyle}>{selectedMovie.title}</h3>
-              <p style={movieStatsStyle}>
-                <span>Views: {selectedMovie.views}</span> <span>Posts: {selectedMovie.posts}</span> <span>Likes: {selectedMovie.likes}</span>
-              </p>
-              <p style={movieMetaStyle}>
-                {selectedMovie.year} | {selectedMovie.length} | Rating: {selectedMovie.rating}
-              </p>
-              <p style={movieCastStyle}>
-                Top Cast: {selectedMovie.cast}
-              </p>
-              <p style={movieDescriptionStyle}>
-                {selectedMovie.description}
-              </p>
-            </div>
-          </div>
-        </div>
+      {selectedMovie ? ( <div onClick={() => handleThumbnailClick(selectedMovie.id)}> {/* You can add movie details here */}
+                                 </div>
       ) : (
         <div style={scrollableStyle}>
           {movies.map((movie) => (
@@ -46,7 +28,7 @@ const NetflixMovieScroll = ({ title, movies }) => {
               src={movie.thumbnail}
               alt={movie.title}
               style={thumbnailStyle}
-              onClick={() => handleThumbnailClick(movie)}
+              onClick={() => handleThumbnailClick(movie.id)}
             />
           ))}
         </div>
