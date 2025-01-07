@@ -3,9 +3,6 @@ import MainHeader from './components/MainPageHeader/MainHeader';
 import NetflixMainScreen from './components/NetflixMainScreen/NetflixMainScreen';
 import NetflixMovieScroll from './components/NetflixMainScreen/NetflixMovieScroll';
 import TwitterSectionDisplay from './components/Twitter/Twitter';
-import MoviePage from "./Pages/MoviePage"; // Dedicated video page
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 
 const AppLayout = () => {
   const layoutStyle = {
@@ -45,19 +42,16 @@ const AppLayout = () => {
   };
 
   return (
-      <Router>
     <div style={layoutStyle}>
       {/* Header */}
       <MainHeader />
 
-        <Routes>
       {/* Main Content: Netflix Column and Twitter Section */}
-      <Route path="/" element={
-          <div style={contentContainer}>
+      <div style={contentContainer}>
         {/* Netflix Column */}
         <div style={netflixColumn}>
           <NetflixMainScreen />
-          <NetflixMovieScroll />
+{/*           <NetflixMovieScroll/> */}
         </div>
 
         {/* Twitter Section */}
@@ -65,23 +59,7 @@ const AppLayout = () => {
           <TwitterSectionDisplay />
         </div>
       </div>
-      }
-                />
-      {/* Movie Page */}
-                <Route path="/movie/:id" element={
-                            <div style={contentContainer}>
-                              <div style={netflixColumn}>
-                                <MoviePage />
-                              </div>
-                              <div style={twitterSection}>
-                                <TwitterSectionDisplay />
-                              </div>
-                            </div>
-                          }
-                          />
-                        </Routes>
-            </div>
-          </Router>
+    </div>
   );
 };
 
