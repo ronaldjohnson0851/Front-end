@@ -46,20 +46,22 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
 // Styles remain the same as before
 const containerStyle = {
   width: '100%',
-  height: '220px',
-  position: 'relative',
+  padding: '10px',
   backgroundColor: '#000',
-  overflowY: 'hidden',
+};
+
+const titleStyle = {
+  color: '#fff',
+  fontSize: '1.5rem',
+  marginBottom: '10px',
 };
 
 const scrollableStyle = {
   display: 'flex',
   overflowX: 'auto',
   gap: '10px',
-  padding: '10px',
-  height: '100%',
+  padding: '10px 0',
   alignItems: 'center',
-  scrollbarWidth: 'none',
 };
 
 const thumbnailStyle = {
