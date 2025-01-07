@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const NetflixMovieScroll = ({ title, movies = [] }) => {
+
   const [selectedMovie, setSelectedMovie] = useState(null);
     const navigate = useNavigate();
+
 
   const handleThumbnailClick = (movieId) => {
     // Navigate to the movie detail page based on movie ID
     navigate(`/movie/${movieId}`);
   };
+
 
   const handleClosePlayer = () => {
     setSelectedMovie(null);
@@ -17,9 +21,11 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
 
   return (
     <div style={containerStyle}>
+
       {title && <h2 style={titleStyle}>{title}</h2>}
       {selectedMovie ? ( <div onClick={() => handleThumbnailClick(selectedMovie.id)}> {/* You can add movie details here */}
                                  </div>
+
       ) : (
         <div style={scrollableStyle}>
           {movies.map((movie) => (
@@ -40,22 +46,20 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
 // Styles remain the same as before
 const containerStyle = {
   width: '100%',
-  padding: '10px',
+  height: '220px',
+  position: 'relative',
   backgroundColor: '#000',
-};
-
-const titleStyle = {
-  color: '#fff',
-  fontSize: '1.5rem',
-  marginBottom: '10px',
+  overflowY: 'hidden',
 };
 
 const scrollableStyle = {
   display: 'flex',
   overflowX: 'auto',
   gap: '10px',
-  padding: '10px 0',
+  padding: '10px',
+  height: '100%',
   alignItems: 'center',
+  scrollbarWidth: 'none',
 };
 
 const thumbnailStyle = {
