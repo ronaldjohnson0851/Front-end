@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import EmblaCarousel from './EmblaCarousel.tsx';
 import { EmblaOptionsType } from 'embla-carousel'
 import './embla.css';
@@ -39,13 +39,20 @@ const NetflixMainScreen = () => {
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
             <NetflixMovieScroll title="New Releases" movies={movies} />
-            <NetflixMovieScroll title="Classics" movies={recentlyWatched} />
+{/*             <NetflixMovieScroll title="Classics" movies={recentlyWatched} /> */}
+{/*             <div onClick={() => handleMovieClick(1)}>  */}{/* Movie ID = 1 */}
+{/*                     <img src="toy-story-thumbnail.jpg" alt="Toy Story" /> */}
+{/*                     <p>Toy Story</p> */}
+{/*                   </div> */}
+{/*                   <div onClick={() => handleMovieClick(2)}>  */}{/* Movie ID = 2 */}
+{/*                     <img src="frida-thumbnail.jpg" alt="Frida" /> */}
+{/*                     <p>Frida</p> */}
+{/*                   </div> */}
         </div>
     );
 
 };
 
-//######## This area controls the Main Netflix div dimensions ##########//
 const componentNetflixScreenStyle = {
   flex: '3',
   display: 'flex',
@@ -58,6 +65,5 @@ const componentNetflixScreenStyle = {
   overflowY: 'scroll',
   scrollbarWidth: 'none',
 };
-
 
 export default NetflixMainScreen;
