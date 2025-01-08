@@ -15,7 +15,7 @@ const SearchByText = ({ onSearch }) => {
         type="text"
         value={searchText}
         onChange={handleSearchChange}
-        placeholder="Search tweets or usernames..."
+        placeholder="Search posts or usernames..."
         style={styles.searchInput}
       />
     </div>

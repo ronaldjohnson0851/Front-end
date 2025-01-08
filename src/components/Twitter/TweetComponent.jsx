@@ -16,12 +16,12 @@ const ThreadDiscussion = ({ movieId }) => {
     const fetchTweets = async () => {
       try {
         const response = await fetch(`http://localhost:8080/getTweet?movieId=${movieId}`);
-        if (!response.ok) throw new Error("Failed to fetch tweets");
+        if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
         setTweets(data.tweets);
         setFilteredTweets(data.tweets);
       } catch (error) {
-        console.error("Error fetching tweets:", error);
+        console.error("Error fetching posts:", error);
       }
     };
 
@@ -96,14 +96,14 @@ const ThreadDiscussion = ({ movieId }) => {
           body: JSON.stringify(newTweet),
         });
 
-        if (!response.ok) throw new Error("Failed to add tweet");
+        if (!response.ok) throw new Error("Failed to add post");
 
         const updatedTweets = [...tweets, { ...newTweet, movieId }];
         setTweets(updatedTweets);
         setFilteredTweets(updatedTweets);
         setTweetText("");
       } catch (error) {
-        console.error("Error adding tweet:", error);
+        console.error("Error adding post:", error);
       }
     }
   };
@@ -132,7 +132,7 @@ const ThreadDiscussion = ({ movieId }) => {
         </button>
         <input
           type="text"
-          placeholder="Write your tweet..."
+          placeholder="Write your post..."
           value={tweetText}
           maxLength={255}
           onChange={handleTweetInputChange}
