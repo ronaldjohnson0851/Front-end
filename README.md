@@ -1,6 +1,6 @@
 # Frontend README
 An engaging and intuitive user interface that allows users to interact with the UI seamlessly.
-It handles video playback, section to select a new video to be played and an integrated Twitter-like feed.
+It handles video playback, section to select a new video to be played and an integrated post section.
 
 # Key Features
 
@@ -8,7 +8,7 @@ It handles video playback, section to select a new video to be played and an int
 •Video Library: View a list of all videos, filter Generes, and search.
 •Video Playback: Stream videos with the ability to playback.
 
-# Twitter Feed: 
+# Post/Comments Section: 
 * As a user, (not logged in) I
   can view list of all posts from all users.
 * As a user, (logged in) I can post a new feed
@@ -16,8 +16,8 @@ It handles video playback, section to select a new video to be played and an int
 * User should get popup suggestions for Hashtags as soon as user types #-followed by the characters.
 * User should be able to tag friends using @  
 * Post Pictures in feed.
-* Can view tweets by a specific user.
-* All new tweets come in feed as they are posted.
+* Can view posts by a specific user.
+* All new posts come in feed as they are posted.
 
 • Features linked with the Movie screen:
 * View general feed on timeline when no movie is playing.
