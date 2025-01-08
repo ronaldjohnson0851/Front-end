@@ -25,7 +25,6 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
       {title && <h2 style={titleStyle}>{title}</h2>}
       {selectedMovie ? ( <div onClick={() => handleThumbnailClick(selectedMovie.id)}> {/* You can add movie details here */}
                                  </div>
-
       ) : (
         <div style={scrollableStyle}>
           {movies.map((movie) => (
