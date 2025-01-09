@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import logo from '../Logos and icons/FLIXXER.png'; 
 import HeaderMenu from './HeaderMenu';
+import { Link } from 'react-router-dom';
+
 
 
 const MainHeader = () => {
@@ -10,6 +12,12 @@ const MainHeader = () => {
     <header style={headerStyle}>
       <img src={logo} alt="Logo" style={logoStyle} />
       <HeaderMenu />
+      <div style={rightSectionStyle}>
+      <Link to="/upload-movie" style={{ textDecoration: 'none' }}>
+              <button style={uploadButtonStyle}>
+                Upload Movie
+              </button>
+            </Link>
       <div
               style={profileContainerStyle}
               onMouseEnter={() => setProfileHovered(true)}
@@ -30,6 +38,7 @@ const MainHeader = () => {
                 </div>
               )}
             </div>
+            </div>
     </header>
   );
 };
@@ -47,7 +56,7 @@ const headerStyle = {
 
 
 const logoStyle = {
-  height: '60px', // Adjust the height to fit the header
+  height: '90px', // Adjust the height to fit the header
   marginRight: '2rem', // Space between logo and text
   padding: '.5rem',
   paddingTop: '1.5rem',
@@ -109,6 +118,24 @@ const profileMenuItemStyle = {
 
 const profileMenuItemHoverStyle = {
   backgroundColor: '#555', // Same hover color as menu items
+};
+
+const rightSectionStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '1rem',
+};
+
+const uploadButtonStyle = {
+  backgroundColor: '#E50914',
+  color: 'white',
+  padding: '10px 20px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  fontSize: '1rem',
+  fontWeight: 'bold',
+  marginTop: '12px',
 };
 
 export default MainHeader;
