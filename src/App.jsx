@@ -7,6 +7,7 @@ import MoviePage from "./Pages/MoviePage";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UploadMovie from "./Pages/UploadMovie";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Account from "./Pages/Account";
 
 
 
@@ -62,7 +63,7 @@ const AppLayout = () => {
           <div style={layoutStyle}>
       {/* Header */}
       <MainHeader />
- <div style={contentContainer}>
+        <div style={contentContainer}>
           {/* Netflix Column */}
           <div style={netflixColumn}>
             <Routes>
@@ -74,6 +75,8 @@ const AppLayout = () => {
 
               {/* Upload Movie Page */}
               <Route path="/upload-movie" element={<UploadMovie />} />
+
+              <Route path="/my-profile" element={<Account />} />
             </Routes>
           </div>
 
@@ -82,8 +85,6 @@ const AppLayout = () => {
           <TwitterSectionDisplay />
         </div>
       </div>
-      }
-                />
             </div>
           </Router>
   );

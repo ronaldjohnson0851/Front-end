@@ -31,7 +31,7 @@ const MainHeader = () => {
               {profileHovered && (
                   <div style={profileOptionsStyle}>
                       <ul style={profileOptionsListStyle}>
-                          <li style={profileMenuItemStyle}>My Profile</li>
+                          <li style={profileMenuItemStyle}><Link to="/my-profile" style={{ textDecoration: 'none', color: 'white' }}>My Profile</Link></li>
                           <li style={profileMenuItemStyle}>Settings</li>
                           <li style={profileMenuItemStyle}>Logout</li>
                   </ul>
