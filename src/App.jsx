@@ -102,7 +102,32 @@ const tvShows = [
     thumbnail: '/video-thumbnails/Friends.png', 
     videoUrl: '/Trailers/Friends.mp4',
     description: 'Follows the personal and professional lives of six twenty to thirty year-old friends living in the Manhattan borough of New York City'
-  }
+  },
+  { 
+    id: 6, 
+    title: 'Law and Order', 
+    genre: 'Drama', 
+    thumbnail: '/video-thumbnails/LawOrder.png', 
+    videoUrl: '/Trailers/',
+    description: 'Two part drama which focuses on the New York criminal justice system showing a violent crime investigated by the police detectives and then the trial of the accused in court by the prosecutors. '
+  },
+  { 
+    id: 7, 
+    title: 'Band of Brothers', 
+    genre: 'Drama', 
+    thumbnail: '/video-thumbnails/BandofBros.png', 
+    videoUrl: '/Trailers/',
+    description: 'The story of Easy Company of the U.S Army 101st Airborne Division and their mission in World War 2 Europe, from Operation Overlord to V-J Day.'
+  },
+  { 
+    id: 8, 
+    title: 'Chernobyl', 
+    genre: 'Historical', 
+    thumbnail: '/video-thumbnails/Chernobyl.png', 
+    videoUrl: '/Trailers/',
+    description: 'In April 1986, the city of Chernobyl in the Soviet Union suffers one of the worst nuclear disasters in the history of mankind. Consequently, many heroes put their lives on the line in the following days, weeks and months.'
+  },
+ 
 ];
 
   return (

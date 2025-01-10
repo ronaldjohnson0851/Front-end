@@ -33,6 +33,7 @@ const TVShowPage = ({ tvShows = [] }) => {
     'Sci-Fi': tvShows.filter((show) => show.genre.includes('Sci-Fi')),
     Fantasy: tvShows.filter((show) => show.genre.includes('Fantasy')),
     Action: tvShows.filter((show) => show.genre.includes('Action')),
+    Historical: tvShows.filter((show) => show.genre.includes('Historical')),
   };
 
   return (
@@ -95,5 +96,13 @@ const mainTitleStyle = {
   marginBottom: '2rem',
   padding: '0 10px',
 };
+
+const showsGridStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+  gap: '0', // Set gap to 0
+  padding: '1rem 0',
+};
+
 
 export default TVShowPage;
