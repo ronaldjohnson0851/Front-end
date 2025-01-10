@@ -1,15 +1,16 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import ReactPlayer from 'react-player';
+import React, { useState } from 'react';
+import { ArrowLeft, Play } from 'lucide-react';
 
-const TVShowDetails = ({ tvShows = [] }) => {
-  const { id } = useParams();
-  
-  // Add loading state
+const TVShowDetails = ({ tvShows = [], id, onBack }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Loading state with skeleton animation
   if (!tvShows.length) {
     return (
-      <div style={{ color: '#fff', textAlign: 'center', marginTop: '2rem' }}>
-        <h1>Loading...</h1>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-8">
+        <div className="w-4/5 h-96 bg-gray-800 animate-pulse rounded-lg"></div>
+        <div className="w-64 h-8 bg-gray-800 animate-pulse mt-4 rounded"></div>
+        <div className="w-48 h-6 bg-gray-800 animate-pulse mt-2 rounded"></div>
       </div>
     );
   }
@@ -18,46 +19,56 @@ const TVShowDetails = ({ tvShows = [] }) => {
 
   if (!show) {
     return (
-      <div style={{ color: '#fff', textAlign: 'center', marginTop: '2rem' }}>
-        <h1>Show Not Found</h1>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-8">
+        <h1 className="text-2xl font-bold mb-4">Show Not Found</h1>
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 px-4 py-2 bg-red-600 rounded-md hover:bg-red-700 transition-colors"
+        >
+          <ArrowLeft size={20} />
+          Back to TV Shows
+        </button>
       </div>
     );
   }
 
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#000',
-    color: '#fff',
-    padding: '2rem',
-    boxSizing: 'border-box',
-  };
-
-  const videoPlayerStyle = {
-    width: '80%',
-    height: 'auto',
-    borderRadius: '8px',
-  };
-
-  const detailsStyle = {
-    marginTop: '1rem',
-    textAlign: 'center',
-  };
-
   return (
-    <div style={containerStyle}>
-      <div style={videoPlayerStyle}>
-        <ReactPlayer url={show.videoUrl} controls width="100%" />
+    <div className="flex flex-col items-center min-h-screen bg-black text-white p-8">
+      {/* Back button */}
+      <button
+        onClick={onBack}
+        className="self-start flex items-center gap-2 px-4 py-2 mb-6 bg-transparent hover:bg-gray-800 rounded-md transition-colors"
+      >
+        <ArrowLeft size={20} />
+        Back to TV Shows
+      </button>
+
+      {/* Video container */}
+      <div className="relative w-4/5 aspect-video rounded-lg overflow-hidden bg-gray-800">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Play size={48} className="text-gray-600" />
+          </div>
+        )}
+        <video
+          src={show.videoUrl}
+          controls
+          className="w-full h-full rounded-lg"
+          onLoadedData={() => setIsLoading(false)}
+        />
       </div>
 
-      <div style={detailsStyle}>
-        <h2>{show.title}</h2>
-        <p>Genre: {show.genre}</p>
-        <p>{show.description || 'No description available.'}</p>
+      {/* Show details */}
+      <div className="w-4/5 mt-8">
+        <h1 className="text-4xl font-bold mb-4">{show.title}</h1>
+        <div className="flex items-center gap-4 mb-4">
+          <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
+            {show.genre}
+          </span>
+        </div>
+        <p className="text-gray-300 text-lg leading-relaxed">
+          {show.description || 'No description available.'}
+        </p>
       </div>
     </div>
   );
