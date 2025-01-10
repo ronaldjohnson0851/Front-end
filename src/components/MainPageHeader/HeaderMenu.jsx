@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import './HeaderMenu.css'; // Import the CSS file for styles
-import { Link } from 'react-router-dom';
-
-
+import { Link, useNavigate } from 'react-router-dom';
 
 function HeaderMenu() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [searchQuery, setSearchQuery] = useState(''); // State to handle search input
+  const navigate = useNavigate();
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value); // Update the search query as the user types
   };
 
+  const handleMenuClick = (title) => {
+    if (title === 'Series') {
+      navigate('/tvshows');
+    }
+    // Add other conditions for other menu items if needed
+  };
+
   const menus = [
     {
-          title: 'Home',
-        },
+      title: 'Home',
+    },
     {
       title: 'Movies',
       submenu: ['Die Hard', 'Toy Story', 'The Godfather'],
@@ -40,19 +46,26 @@ function HeaderMenu() {
               className="menu-item"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-            ><Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-              {menu.title}</Link>
+              onClick={() => handleMenuClick(menu.title)}
+            >
+              {menu.title === 'Home' ? (
+                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+                  {menu.title}
+                </Link>
+              ) : (
+                menu.title
+              )}
             </li>
           ))}
-      <li className="search-item">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={handleSearchChange} // Update the state when input changes
-                    className="search-box"
-                  />
-                </li>
+          <li className="search-item">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="search-box"
+            />
+          </li>
         </ul>
       </nav>
     </header>
