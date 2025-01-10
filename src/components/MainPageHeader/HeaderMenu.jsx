@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './HeaderMenu.css'; // Import the CSS file for styles
+import { Link } from 'react-router-dom';
+
 
 
 function HeaderMenu() {
@@ -13,7 +15,6 @@ function HeaderMenu() {
   const menus = [
     {
           title: 'Home',
-          submenu: ['placeholder'],
         },
     {
       title: 'Movies',
@@ -39,17 +40,8 @@ function HeaderMenu() {
               className="menu-item"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {menu.title}
-              {hoveredIndex === index && (
-                <ul className="submenu">
-                  {menu.submenu.map((submenuItem, subIndex) => (
-                    <li key={subIndex} className="submenu-item">
-                      {submenuItem}
-                    </li>
-                  ))}
-                </ul>
-              )}
+            ><Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+              {menu.title}</Link>
             </li>
           ))}
       <li className="search-item">
