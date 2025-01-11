@@ -1,12 +1,14 @@
 package Flixxer.Flixxer.Backend.models;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "genre")
 public class Genre {
 
 
@@ -19,13 +21,10 @@ public class Genre {
     @Column
     private String title;
 
-    @Getter
-    @Setter
-    @Column
+    @ManyToMany(mappedBy = "genres")
+    private List<Video> videos;
 
-    private String genre;
-
-
+//list
 
 
     public void setId(Long id) {
@@ -34,5 +33,5 @@ public class Genre {
 
     public Long getId() {
         return id;
-    }
+   }
 }
