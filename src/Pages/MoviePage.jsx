@@ -7,8 +7,15 @@ import ReactPlayer from 'react-player';
 const MoviePage = ({ movies }) => {
   const { id } = useParams();
 
+    if (!movies || !Array.isArray(movies)) {
+      return (
+        <div style={{ color: '#fff', textAlign: 'center', marginTop: '2rem' }}>
+          <h1>Loading...</h1>
+        </div>
+      );
+    }
 
-  const movie = movies.find((m) => m.id === Number(id));
+  const movie = movies.find((m) => m.content_id === Number(id));
 
   if (!movie) {
     return (
@@ -66,7 +73,7 @@ const MoviePage = ({ movies }) => {
 
       <div style={movieDetailsStyle}>
         <h2>{movie.title}</h2>
-        <p>{movie.releaseYear || "Year Unknown"} | {movie.runtime || "Unknown runtime"} minutes</p>
+        <p>{movie.releaseDate || "Release Date Unknown"} | {movie.duration || "Unknown duration"} minutes</p>
         <p><strong>Rating:</strong> {movie.rating || "Not Rated"}</p>
         <p><strong>Top Cast:</strong> {movie.cast || "Not available"}</p>
         <p>{movie.description || "No description available."}</p>
