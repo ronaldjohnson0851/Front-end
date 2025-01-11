@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+//import ThreadDiscussion from '/Users/dmishra/DeeptiProjects/Front-end-Fork/src/components/Twitter/TweetComponent.jsx';
 
 
 const NetflixMovieScroll = ({ title, movies = [] }) => {
@@ -8,10 +8,12 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
     const navigate = useNavigate();
 
-
   const handleThumbnailClick = (movieId) => {
     // Navigate to the movie detail page based on movie ID
     navigate(`/movie/${movieId}`);
+   // setSelectedMovie(movieId);
+//    {/**********Added to test the movieId being passed into post page. **************/}
+//           <ThreadDiscussion movieId={movieId} />
   };
 
 

@@ -3,36 +3,36 @@ import EmojiPicker from "emoji-picker-react";
 import SearchByText from "./SearchByText";
 import SearchByHashtag from "./SearchByHashtag";
 
-const ThreadDiscussion = ({ movieId }) => {
-  const [tweets, setTweets] = useState([]);
-  const [filteredTweets, setFilteredTweets] = useState([]);
-  const [tweetText, setTweetText] = useState("");
+  const ThreadDiscussion = ({ movieId }) => {
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [postText, setPostText] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const userId = "Deepti Mishra";
-  const tweetListRef = useRef(null);
+  const postListRef = useRef(null);
 
   useEffect(() => {
-    const fetchTweets = async () => {
+    const fetchPosts = async () => {
       try {
         const response = await fetch(`http://localhost:8080/getTweet?movieId=${movieId}`);
         if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
-        setTweets(data.tweets);
-        setFilteredTweets(data.tweets);
+        setPosts(data.tweets);
+        setFilteredPosts(data.tweets);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
 
-    fetchTweets();
+    fetchPosts();
   }, [movieId]);
 
   useEffect(() => {
-    if (tweetListRef.current) {
-      tweetListRef.current.scrollTop = tweetListRef.current.scrollHeight;
+    if (postListRef.current) {
+      postListRef.current.scrollTop = postListRef.current.scrollHeight;
     }
-  }, [filteredTweets]);
+  }, [filteredPosts]);
 
   const fetchSuggestions = async (term) => {
     try {
@@ -46,9 +46,9 @@ const ThreadDiscussion = ({ movieId }) => {
     }
   };
 
-  const handleTweetInputChange = (e) => {
+  const handlePostInputChange = (e) => {
     const value = e.target.value;
-    setTweetText(value);
+    setPostText(value);
     handleHashtagInput(value);
   };
 
@@ -66,25 +66,25 @@ const ThreadDiscussion = ({ movieId }) => {
   };
 
   const handleSuggestionClick = (hashtag) => {
-    const updatedText = tweetText.replace(/#\w*$/, `#${hashtag}`);
-    setTweetText(updatedText);
+    const updatedText = postText.replace(/#\w*$/, `#${hashtag}`);
+    setPostText(updatedText);
     setSuggestions([]);
   };
 
   const handleSearchByText = (searchText) => {
-    const filtered = tweets.filter(
+    const filtered = posts.filter(
       (tweet) =>
         tweet.tweet.toLowerCase().includes(searchText.toLowerCase()) ||
         tweet.userId.toLowerCase().includes(searchText.toLowerCase())
     );
-    setFilteredTweets(filtered);
+    setFilteredPosts(filtered);
   };
 
   const addTweet = async () => {
-    if (tweetText.trim() !== "") {
+    if (postText.trim() !== "") {
       const newTweet = {
         userId,
-        tweet: tweetText,
+        tweet: postText,
       };
 
       try {
@@ -98,10 +98,10 @@ const ThreadDiscussion = ({ movieId }) => {
 
         if (!response.ok) throw new Error("Failed to add post");
 
-        const updatedTweets = [...tweets, { ...newTweet, movieId }];
-        setTweets(updatedTweets);
-        setFilteredTweets(updatedTweets);
-        setTweetText("");
+        const updatedTweets = [...posts, { ...newTweet, movieId }];
+        setPosts(updatedTweets);
+        setFilteredPosts(updatedTweets);
+        setPostText("");
       } catch (error) {
         console.error("Error adding post:", error);
       }
@@ -112,8 +112,8 @@ const ThreadDiscussion = ({ movieId }) => {
     <div style={styles.container}>
       <SearchByText onSearch={handleSearchByText} />
 
-      <div style={styles.tweetList} ref={tweetListRef}>
-        {filteredTweets.map((tweet, index) => (
+      <div style={styles.tweetList} ref={postListRef}>
+        {filteredPosts.map((tweet, index) => (
           <div key={index} style={styles.tweet}>
             <div style={styles.tweetContent}>
               <div style={styles.userLabel}>{tweet.userId}</div>
@@ -133,26 +133,26 @@ const ThreadDiscussion = ({ movieId }) => {
         <input
           type="text"
           placeholder="Write your post..."
-          value={tweetText}
+          value={postText}
           maxLength={255}
-          onChange={handleTweetInputChange}
+          onChange={handlePostInputChange}
           style={styles.tweetInput}
         />
        <SearchByHashtag
          fetchSuggestions={fetchSuggestions}
-         text={tweetText}
-         setText={setTweetText}
+         text={postText}
+         setText={setPostText}
        />
         <button onClick={addTweet} style={styles.tweetButton}>
           Send
         </button>
         {showEmojiPicker && (
           <div style={styles.emojiPickerContainer}>
-            <EmojiPicker onEmojiClick={(emojiObject) => setTweetText((prev) => prev + emojiObject.emoji)} />
+            <EmojiPicker onEmojiClick={(emojiObject) => setPostText((prev) => prev + emojiObject.emoji)} />
           </div>
         )}
       </div>
-      <p style={styles.charCount}>{255 - tweetText.length} Characters left</p>
+      <p style={styles.charCount}>{255 - postText.length} Characters left</p>
     </div>
   );
 };

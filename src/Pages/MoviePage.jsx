@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
+//******/Added to test the movieId being passed into post page.
+//import ThreadDiscussion from '/Users/dmishra/DeeptiProjects/Front-end-Fork/src/components/Twitter/TweetComponent.jsx';
 
 
 // { movies = [] } add this as a prop once we have data

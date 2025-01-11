@@ -1,8 +1,8 @@
 import React from 'react';
+import PostSectionDisplay from './components/Posts/Posts';
 import MainHeader from './components/MainPageHeader/MainHeader';
 import NetflixMainScreen from './components/NetflixMainScreen/NetflixMainScreen';
 import NetflixMovieScroll from './components/NetflixMainScreen/NetflixMovieScroll';
-import TwitterSectionDisplay from './components/Twitter/Twitter';
 import MoviePage from "./Pages/MoviePage";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UploadMovie from "./Pages/UploadMovie";
@@ -42,7 +42,7 @@ const AppLayout = () => {
     overflowY: 'auto',
   };
 
-  const twitterSection = {
+  const postsSection = {
     flex: 1, // Allocate smaller space to Twitter section
     marginLeft: '0rem', // Adds spacing between columns
    // overflowY: 'auto', // Allow scrolling if content overflows
@@ -80,9 +80,9 @@ const AppLayout = () => {
             </Routes>
           </div>
 
-        {/* Twitter Section */}
-        <div style={twitterSection}>
-          <TwitterSectionDisplay />
+        {/* Posts Section */}
+        <div style={postsSection}>
+          <PostSectionDisplay movieId= ""/>
         </div>
       </div>
             </div>

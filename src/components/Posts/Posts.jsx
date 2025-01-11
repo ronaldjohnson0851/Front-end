@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import TweetComponent from "./TweetComponent";
+import PostsComponent from "./PostsComponent";
+import selectedMovie from "../NetflixMainScreen/NetflixMovieScroll";
 
-const TwitterSectionDisplay = () => {
+const PostSectionDisplay = ({ movieId }) => {
   //********* This is only to test tweet display based on movieId being passed as a prop ******/
-  const movieId = "1"; // Replace with dynamic logic or static value as needed
+ // const movieId = ""; // Replace with dynamic logic or static value as needed
 
   return (
     <div style={styles.container}>
-        <div style={styles.twitterDisplay}>         
-          <TweetComponent movieId={movieId} />
-        </div>
+        <div style={styles.postsDisplay}>
+           <PostsComponent movieId={movieId}/>
+{/*            movieId={selectedMovie.movieId} />  */}
+
+          </div>
     </div>
   );
 };
@@ -24,10 +27,10 @@ const styles = {
     borderRadius: "4px",
     padding: "0px",
   },
-  twitterDisplay: {
+  postsDisplay: {
     marginTop: "0px", // Add margin below the button for spacing
   },
 
 };
 
-export default TwitterSectionDisplay;
+export default PostSectionDisplay;
