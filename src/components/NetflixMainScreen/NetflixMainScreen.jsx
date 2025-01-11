@@ -13,7 +13,7 @@ const SLIDES = [
     'carousel-photos/interstellarcaro.png',
 ];
 
-const NetflixMainScreen = ( {movies} ) => {
+const NetflixMainScreen = ( {movies}) => {
 
 //   useEffect(() => {
 //     // Simulate API call

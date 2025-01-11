@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PostSectionDisplay from './components/Posts/Posts';
+import ThreadDiscussion from './components/Posts/PostsComponent';
 import MainHeader from './components/MainPageHeader/MainHeader';
 import NetflixMainScreen from './components/NetflixMainScreen/NetflixMainScreen';
 import NetflixMovieScroll from './components/NetflixMainScreen/NetflixMovieScroll';
-//import TwitterSectionDisplay from './components/Twitter/Twitter';
 import MoviePage from "./Pages/MoviePage";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UploadMovie from "./Pages/UploadMovie";
@@ -16,6 +16,7 @@ import TVShowDetails from './Pages/TVShowDetails';
 
 
 const AppLayout = () => {
+
   const layoutStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -138,6 +139,7 @@ const tvShows = [
       <div style={contentContainer}>
         <div style={netflixColumn}>
           <Routes>
+
             <Route path="/" element={<NetflixMainScreen movies={movies} />} />
             <Route path="/movie/:id" element={<MoviePage movies={movies} />} />
             <Route path="/upload-movie" element={<UploadMovie />} />
@@ -146,8 +148,8 @@ const tvShows = [
             <Route path="/tvshow/:id" element={<TVShowDetails tvShows={tvShows} />} />
           </Routes>
         </div>
-        <div style={twitterSection}>
-          <TwitterSectionDisplay />
+        <div style={postsSection}>
+          <PostSectionDisplay movieId= ""/>
         </div>
       </div>
     </div>

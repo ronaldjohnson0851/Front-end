@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import PostsComponent from "./PostsComponent";
+import ThreadDiscussion from "./PostsComponent";
 import selectedMovie from "../NetflixMainScreen/NetflixMovieScroll";
 
 const PostSectionDisplay = ({ movieId }) => {
-  //********* This is only to test tweet display based on movieId being passed as a prop ******/
- // const movieId = ""; // Replace with dynamic logic or static value as needed
-
   return (
     <div style={styles.container}>
         <div style={styles.postsDisplay}>
-           <PostsComponent movieId={movieId}/>
-{/*            movieId={selectedMovie.movieId} />  */}
-
+           <ThreadDiscussion movieId={movieId}/>
           </div>
     </div>
   );

@@ -12,12 +12,17 @@ import SearchByHashtag from "./SearchByHashtag";
   const userId = "Deepti Mishra";
   const postListRef = useRef(null);
 
+  console.log("ThreadDiscussion movieId before : " + movieId);
+
   useEffect(() => {
+
+      console.log("Rendering new posts...");
     const fetchPosts = async () => {
       try {
         const response = await fetch(`http://localhost:8080/getTweet?movieId=${movieId}`);
         if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
+        console.log("Fetched data:", data.tweets);
         setPosts(data.tweets);
         setFilteredPosts(data.tweets);
       } catch (error) {
@@ -111,7 +116,6 @@ import SearchByHashtag from "./SearchByHashtag";
   return (
     <div style={styles.container}>
       <SearchByText onSearch={handleSearchByText} />
-
       <div style={styles.tweetList} ref={postListRef}>
         {filteredPosts.map((tweet, index) => (
           <div key={index} style={styles.tweet}>
