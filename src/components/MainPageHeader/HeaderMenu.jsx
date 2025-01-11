@@ -12,11 +12,17 @@ function HeaderMenu() {
   };
 
   const handleMenuClick = (title) => {
-    if (title === 'Series') {
-      navigate('/tvshows');
+    const routes = {
+      'Series': '/tvshows',
+      'Movies': '/movies',
+      // Add more menu items and their corresponding routes here
+    };
+  
+    if (routes[title]) {
+      navigate(routes[title]);
     }
-    // Add other conditions for other menu items if needed
   };
+  
 
   const menus = [
     {
@@ -30,10 +36,7 @@ function HeaderMenu() {
       title: 'Series',
       submenu: ['Breaking Bad', 'Stranger Things', 'The Crown'],
     },
-    {
-      title: 'Documentaries',
-      submenu: ['Planet Earth', 'The Last Dance', 'Making a Murderer'],
-    },
+    
   ];
 
   return (
