@@ -10,6 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Account from "./Pages/Account";
 import TVShowPage from './Pages/TVShowPage';
 import TVShowDetails from './Pages/TVShowDetails';
+import MoviesPage from './Pages/MoviesPage';
+
 
 
 
@@ -52,13 +54,13 @@ const AppLayout = () => {
   };
 
   const movies = [
-            { id: 1, title: 'Die Hard', thumbnail: '/video-thumbnails/Die Hard.png', videoUrl: 'https://www.youtube.com/watch?v=jaJuwKCmJbY' },
-                    { id: 2, title: '30 Days of Night', thumbnail: '/video-thumbnails/30DaysNight.png', videoUrl: 'https://www.example.com/movie2.mp4' },
-                    { id: 3, title: 'Back to the Future', thumbnail: '/video-thumbnails/Back to the Future.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 4, title: 'the Iron Giant', thumbnail: '/video-thumbnails/Iron Giant.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 5, title: 'Interstellar', thumbnail: '/video-thumbnails/Interstellar.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 6, title: 'Toy Story', thumbnail: '/video-thumbnails/Toy Story.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 7, title: 'Toy Story 2', thumbnail: '/video-thumbnails/Toy Story2.png', videoUrl: 'https://www.example.com/movie3.mp4' },
+            { id: 1, title: 'Die Hard', genre: 'Action' ,thumbnail: '/video-thumbnails/Die Hard.png', videoUrl: 'https://www.youtube.com/watch?v=jaJuwKCmJbY' },
+                    { id: 2, title: '30 Days of Night', genre: 'Horror', thumbnail: '/video-thumbnails/30DaysNight.png', videoUrl: 'https://www.example.com/movie2.mp4' },
+                    { id: 3, title: 'Back to the Future', genre: 'Sci-fi', thumbnail: '/video-thumbnails/Back to the Future.png', videoUrl: 'https://www.example.com/movie3.mp4' },
+                    { id: 4, title: 'the Iron Giant', genre: 'Animation', thumbnail: '/video-thumbnails/Iron Giant.png', videoUrl: 'https://www.example.com/movie3.mp4' },
+                    { id: 5, title: 'Interstellar', genre: 'Sci-fi', thumbnail: '/video-thumbnails/Interstellar.png', videoUrl: 'https://www.example.com/movie3.mp4' },
+                    { id: 6, title: 'Toy Story', genre: 'Animation',thumbnail: '/video-thumbnails/Toy Story.png', videoUrl: 'https://www.example.com/movie3.mp4' },
+                    { id: 7, title: 'Toy Story 2', genre: 'Animation', thumbnail: '/video-thumbnails/Toy Story2.png', videoUrl: 'https://www.example.com/movie3.mp4' },
                   ];
 
           
@@ -143,6 +145,8 @@ const tvShows = [
             <Route path="/my-profile" element={<Account />} />
             <Route path="/tvshows" element={<TVShowPage tvShows={tvShows} />} />
             <Route path="/tvshow/:id" element={<TVShowDetails tvShows={tvShows} />} />
+            <Route path="/movies" element={<MoviesPage movies={movies} />} />
+
           </Routes>
         </div>
         <div style={twitterSection}>
