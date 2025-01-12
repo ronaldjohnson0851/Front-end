@@ -1,53 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-// const NetflixMovieScroll = ({ title, movies, loading }) => {
-//   const [selectedMovie, setSelectedMovie] = useState(null);
-//     const navigate = useNavigate();
-//
-//
-//   const handleThumbnailClick = (movieId) => {
-//     navigate(`/movie/${movieId}`);
-//   };
-//
-//   const handleClosePlayer = () => {
-//     setSelectedMovie(null);
-//   };
-//
-//   const fetchMovieDetails = async (movieId) => {
-//     try {
-//       const response = await fetch(`https://your-api-endpoint/movies/${movieId}`);
-//       const data = await response.json();
-//       setSelectedMovie(data); // Store the movie details in the state
-//     } catch (error) {
-//       console.error("Failed to fetch movie details", error);
-//     }
-//   };
-//
-//
-//   return (
-//     <div style={containerStyle}>
-//
-//       {title && <h2 style={titleStyle}>{title}</h2>}
-//       {selectedMovie ? ( <div onClick={() => handleThumbnailClick(selectedMovie.id)}></div>
-//       ) : (
-//         <div style={scrollableStyle}>
-//           {movies.map((movie) => (
-//             <img
-//               key={movie.id}
-//               src={movie.thumbnail}
-//               alt={movie.title}
-//               style={thumbnailStyle}
-//               onClick={() => handleThumbnailClick(movie.id)}
-//             />
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
 const NetflixMovieScroll = ({ title, movies, loading }) => {
   const navigate = useNavigate();
 
