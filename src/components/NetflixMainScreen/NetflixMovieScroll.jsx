@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PostSectionDisplay from '/Users/dmishra/DeeptiProjects/Front-end-Fork/src/components/Posts/Posts';
-import ThreadDiscussion from '/Users/dmishra/DeeptiProjects/Front-end-Fork/src/components/Posts/PostsComponent';
-import AppLayout from '/Users/dmishra/DeeptiProjects/Front-end-Fork/src/App';
 
-const NetflixMovieScroll = ({ title, movies = [] }) => {
+const NetflixMovieScroll = ({ title, movies = [],onMovieSelect }) => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
     const navigate = useNavigate();
 
   const handleThumbnailClick = (movieId) => {
-       // onMovieSelect(movieId);
-       setSelectedMovie(movieId); //Set movieId to be passed to posts page
-
         //Navigate to the movie detail page based on movie ID
         navigate(`/movie/${movieId}`);
+        if (onMovieSelect) {
+              onMovieSelect(movieId) // Notify parent of the selected movie
+            }
   };
 
 
@@ -27,7 +24,6 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
 
       {title && <h2 style={titleStyle}>{title}</h2>}
       {selectedMovie ? ( <div onClick={() => handleThumbnailClick(selectedMovie)}> {/* You can add movie details here */}
-                 {<PostSectionDisplay movieId={selectedMovie} />}
                                  </div>
 
       ) : (

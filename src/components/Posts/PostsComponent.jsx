@@ -16,7 +16,6 @@ import SearchByHashtag from "./SearchByHashtag";
 
   useEffect(() => {
 
-      console.log("Rendering new posts...");
     const fetchPosts = async () => {
       try {
         const response = await fetch(`http://localhost:8080/getTweet?movieId=${movieId}`);

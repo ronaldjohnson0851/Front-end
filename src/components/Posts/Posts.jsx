@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ThreadDiscussion from "./PostsComponent";
-import selectedMovie from "../NetflixMainScreen/NetflixMovieScroll";
 
 const PostSectionDisplay = ({ movieId }) => {
   return (

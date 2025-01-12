@@ -13,7 +13,7 @@ const SLIDES = [
     'carousel-photos/interstellarcaro.png',
 ];
 
-const NetflixMainScreen = ( {movies}) => {
+const NetflixMainScreen = ( {movies, onMovieSelect}) => {
 
 //   useEffect(() => {
 //     // Simulate API call
@@ -29,7 +29,7 @@ const NetflixMainScreen = ( {movies}) => {
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-            <NetflixMovieScroll title="New Releases" movies={movies} />
+            <NetflixMovieScroll title="New Releases" movies={movies}  onMovieSelect={onMovieSelect}/>
 {/*             <NetflixMovieScroll title="Classics" movies={recentlyWatched} /> */}
 {/*             <div onClick={() => handleMovieClick(1)}>  */}{/* Movie ID = 1 */}
 {/*                     <img src="toy-story-thumbnail.jpg" alt="Toy Story" /> */}

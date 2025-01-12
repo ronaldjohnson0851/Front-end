@@ -30,6 +30,15 @@ const AppLayout = () => {
     overflow: 'hidden', // Prevent content overflow
   };
 
+//set the initial movieId state as empty so that we can fetch the general tweets
+const [selectedMovieId, setSelectedMovieId] = useState("");
+
+
+//Added the function for reverse routing from video page to parent page and then to post page
+  const handleMovieSelect = (movieId) => {
+    setSelectedMovieId(movieId);
+  };
+
   const contentContainer = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -140,7 +149,7 @@ const tvShows = [
         <div style={netflixColumn}>
           <Routes>
 
-            <Route path="/" element={<NetflixMainScreen movies={movies} />} />
+            <Route path="/" element={<NetflixMainScreen movies={movies} onMovieSelect={handleMovieSelect}/>} />
             <Route path="/movie/:id" element={<MoviePage movies={movies} />} />
             <Route path="/upload-movie" element={<UploadMovie />} />
             <Route path="/my-profile" element={<Account />} />
@@ -149,7 +158,7 @@ const tvShows = [
           </Routes>
         </div>
         <div style={postsSection}>
-          <PostSectionDisplay movieId= ""/>
+          <PostSectionDisplay movieId={selectedMovieId} />
         </div>
       </div>
     </div>
