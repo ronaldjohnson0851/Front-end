@@ -28,7 +28,7 @@ public class PostController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(value="/posts/update/{id}")
-    public String updatePost(@PathVariable long id,@RequestBody Post post){
+    public String updatePost(@PathVariable Long id,@RequestBody Post post){
         Post updatePost = postRepository.findById(id).get();
 
         updatePost.setMessage(post.getMessage());
@@ -38,7 +38,7 @@ public class PostController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(value = "/posts/delete/{id}" )
-    public String deletePost(@PathVariable long id) {
+    public String deletePost(@PathVariable Long id) {
         Post deletedPost = postRepository.findById(id).get();
         postRepository.delete(deletedPost);
         return "Post deleted";
