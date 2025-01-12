@@ -1,36 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-
-const NetflixMovieScroll = ({ title, movies = [] }) => {
-
-  const [selectedMovie, setSelectedMovie] = useState(null);
-    const navigate = useNavigate();
-
+const NetflixMovieScroll = ({ title, movies, loading }) => {
+  const navigate = useNavigate();
 
   const handleThumbnailClick = (movieId) => {
-    // Navigate to the movie detail page based on movie ID
-    navigate(`/movie/${movieId}`);
-  };
-
-
-  const handleClosePlayer = () => {
-    setSelectedMovie(null);
+      const selectedMovie = movies.find((movie) => movie.id === movieId);
+    navigate(`/movie/${movieId}`, { state: { movie: selectedMovie, movies } });
   };
 
   return (
     <div style={containerStyle}>
-
       {title && <h2 style={titleStyle}>{title}</h2>}
-      {selectedMovie ? ( <div onClick={() => handleThumbnailClick(selectedMovie.id)}> {/* You can add movie details here */}
-                                 </div>
+      {loading ? (
+        <p style={{ color: 'white' }}>Loading...</p>
       ) : (
         <div style={scrollableStyle}>
           {movies.map((movie) => (
             <img
               key={movie.id}
-              src={movie.thumbnail}
+              src={movie.thumbnail || 'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480'}
               alt={movie.title}
               style={thumbnailStyle}
               onClick={() => handleThumbnailClick(movie.id)}
@@ -42,7 +31,6 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
   );
 };
 
-// Styles remain the same as before
 const containerStyle = {
   width: '100%',
   padding: '10px',

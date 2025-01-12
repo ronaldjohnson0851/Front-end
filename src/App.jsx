@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MainHeader from './components/MainPageHeader/MainHeader';
 import NetflixMainScreen from './components/NetflixMainScreen/NetflixMainScreen';
 import NetflixMovieScroll from './components/NetflixMainScreen/NetflixMovieScroll';
@@ -52,16 +52,6 @@ const AppLayout = () => {
     marginLeft: '0rem', // Adds spacing between columns
    // overflowY: 'auto', // Allow scrolling if content overflows
   };
-
-  const movies = [
-            { id: 1, title: 'Die Hard', genre: 'Action' ,thumbnail: '/video-thumbnails/Die Hard.png', videoUrl: 'https://www.youtube.com/watch?v=jaJuwKCmJbY' },
-                    { id: 2, title: '30 Days of Night', genre: 'Horror', thumbnail: '/video-thumbnails/30DaysNight.png', videoUrl: 'https://www.example.com/movie2.mp4' },
-                    { id: 3, title: 'Back to the Future', genre: 'Sci-fi', thumbnail: '/video-thumbnails/Back to the Future.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 4, title: 'the Iron Giant', genre: 'Animation', thumbnail: '/video-thumbnails/Iron Giant.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 5, title: 'Interstellar', genre: 'Sci-fi', thumbnail: '/video-thumbnails/Interstellar.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 6, title: 'Toy Story', genre: 'Animation',thumbnail: '/video-thumbnails/Toy Story.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                    { id: 7, title: 'Toy Story 2', genre: 'Animation', thumbnail: '/video-thumbnails/Toy Story2.png', videoUrl: 'https://www.example.com/movie3.mp4' },
-                  ];
 
           
 const tvShows = [
@@ -136,16 +126,18 @@ const tvShows = [
     <Router>
     <div style={layoutStyle}>
       <MainHeader />
-      <div style={contentContainer}>
-        <div style={netflixColumn}>
-          <Routes>
-            <Route path="/" element={<NetflixMainScreen movies={movies} />} />
-            <Route path="/movie/:id" element={<MoviePage movies={movies} />} />
-            <Route path="/upload-movie" element={<UploadMovie />} />
-            <Route path="/my-profile" element={<Account />} />
-            <Route path="/tvshows" element={<TVShowPage tvShows={tvShows} />} />
-            <Route path="/tvshow/:id" element={<TVShowDetails tvShows={tvShows} />} />
-            <Route path="/movies" element={<MoviesPage movies={movies} />} />
+
+        <div style={contentContainer}>
+          {/* Netflix Column */}
+          <div style={netflixColumn}>
+            <Routes>
+              {/* Netflix Main Screen */}
+              <Route path="/" element={<NetflixMainScreen />} />
+
+              {/* Movie Page */}
+              <Route path="/movie/:id" element={<MoviePage />} />
+
+     
 
           </Routes>
         </div>
