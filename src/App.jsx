@@ -1,8 +1,10 @@
+
+import PostSectionDisplay from './components/Posts/Posts';
+import ThreadDiscussion from './components/Posts/PostsComponent';
 import React, { useState, useEffect } from 'react';
 import MainHeader from './components/MainPageHeader/MainHeader';
 import NetflixMainScreen from './components/NetflixMainScreen/NetflixMainScreen';
 import NetflixMovieScroll from './components/NetflixMainScreen/NetflixMovieScroll';
-import TwitterSectionDisplay from './components/Twitter/Twitter';
 import MoviePage from "./Pages/MoviePage";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UploadMovie from "./Pages/UploadMovie";
@@ -30,6 +32,15 @@ const AppLayout = () => {
     overflow: 'hidden', // Prevent content overflow
   };
 
+//DD - set the initial movieId state as empty so that we can fetch the general tweets
+const [selectedMovieId, setSelectedMovieId] = useState("");
+
+
+//DD - Added the function for reverse routing from video page to parent page and then to post page
+  const handleMovieSelect = (movieId) => {
+    setSelectedMovieId(movieId);
+  };
+
   const contentContainer = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -47,13 +58,13 @@ const AppLayout = () => {
     overflowY: 'auto',
   };
 
-  const twitterSection = {
+  const postsSection = {
     flex: 1, // Allocate smaller space to Twitter section
     marginLeft: '0rem', // Adds spacing between columns
    // overflowY: 'auto', // Allow scrolling if content overflows
   };
 
-          
+
 const tvShows = [
   { 
     id: 1, 
@@ -132,17 +143,17 @@ const tvShows = [
           <div style={netflixColumn}>
             <Routes>
               {/* Netflix Main Screen */}
-              <Route path="/" element={<NetflixMainScreen />} />
+              <Route path="/" element={<NetflixMainScreen onMovieSelect={handleMovieSelect}/>} />
 
               {/* Movie Page */}
               <Route path="/movie/:id" element={<MoviePage />} />
 
-     
+
 
           </Routes>
         </div>
-        <div style={twitterSection}>
-          <TwitterSectionDisplay />
+        <div style={postsSection}>
+          <PostSectionDisplay movieId={selectedMovieId} />
         </div>
       </div>
     </div>

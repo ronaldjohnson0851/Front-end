@@ -15,7 +15,7 @@ const SLIDES = [
     'carousel-photos/interstellarcaro.png',
 ];
 
-const NetflixMainScreen = () => {
+const NetflixMainScreen = ({onMovieSelect}) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -46,11 +46,11 @@ const NetflixMainScreen = () => {
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-            <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} />
-            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} />
-            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} />
-            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} />
-            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} />
+            <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} onMovieSelect={onMovieSelect} />
+            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} onMovieSelect={onMovieSelect} />
+            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} onMovieSelect={onMovieSelect}/>
         </div>
     );
 
