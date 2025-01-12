@@ -30,17 +30,23 @@ const NetflixMainScreen = () => {
         console.error('Error fetching movies:', error);
         setLoading(false);
       });
-  }, []);
+  }, []); // Fixed the missing dependency array
 
+  // Categorize movies by genre
   const actionMovies = movies.filter(movie => movie.genre === 'Action');
   const comedyMovies = movies.filter(movie => movie.genre === 'Comedy');
   const dramaMovies = movies.filter(movie => movie.genre === 'Drama');
   const sciFiMovies = movies.filter(movie => movie.genre === 'Sci-Fi');
   const animationMovies = movies.filter(movie => movie.genre === 'Animation');
+  const sortedMovies = [...movies].sort((a, b) => b.id - a.id);
+    const maxMoviesToShow = 10;
+    const moviesToShow = sortedMovies.slice(0, maxMoviesToShow);
+
 
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+            <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} />
             <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} />
             <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} />
             <NetflixMovieScroll title="New Releases" movies={movies} loading={loading} />
