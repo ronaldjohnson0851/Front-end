@@ -10,7 +10,7 @@ const NetflixMovieScroll = ({ title, movies = [],onMovieSelect }) => {
         //Navigate to the movie detail page based on movie ID
         navigate(`/movie/${movieId}`);
         if (onMovieSelect) {
-              onMovieSelect(movieId) // Notify parent of the selected movie
+              onMovieSelect(movieId) // DD - Notify parent Page of the selected movie
             }
   };
 

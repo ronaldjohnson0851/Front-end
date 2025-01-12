@@ -30,11 +30,11 @@ const AppLayout = () => {
     overflow: 'hidden', // Prevent content overflow
   };
 
-//set the initial movieId state as empty so that we can fetch the general tweets
+//DD - set the initial movieId state as empty so that we can fetch the general tweets
 const [selectedMovieId, setSelectedMovieId] = useState("");
 
 
-//Added the function for reverse routing from video page to parent page and then to post page
+//DD - Added the function for reverse routing from video page to parent page and then to post page
   const handleMovieSelect = (movieId) => {
     setSelectedMovieId(movieId);
   };

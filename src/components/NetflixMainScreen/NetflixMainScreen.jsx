@@ -29,7 +29,14 @@ const NetflixMainScreen = ( {movies, onMovieSelect}) => {
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+
+                 {/* DD - Added onMovieSelect function to send the movie ID on thumbnail click  */}
             <NetflixMovieScroll title="New Releases" movies={movies}  onMovieSelect={onMovieSelect}/>
+
+
+
+
+
 {/*             <NetflixMovieScroll title="Classics" movies={recentlyWatched} /> */}
 {/*             <div onClick={() => handleMovieClick(1)}>  */}{/* Movie ID = 1 */}
 {/*                     <img src="toy-story-thumbnail.jpg" alt="Toy Story" /> */}
