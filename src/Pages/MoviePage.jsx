@@ -1,17 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-//******/Added to test the movieId being passed into post page.
-//import ThreadDiscussion from '/Users/dmishra/DeeptiProjects/Front-end-Fork/src/components/Twitter/TweetComponent.jsx';
+import { useLocation } from 'react-router-dom';
 
+const MoviePage = () => {
+  const { id } = useParams(); // Get the movie ID from the URL
+  const location = useLocation(); // Get the state passed from the NetflixMovieScroll component
+  const { movie, movies } = location.state || {}; // Destructure movie and movies from the location state
 
-// { movies = [] } add this as a prop once we have data
-const MoviePage = ({ movies }) => {
-  const { id } = useParams();
-
-
-  const movie = movies.find((m) => m.id === Number(id));
-
+  // If movie is not passed in the location state, show an error
   if (!movie) {
     return (
       <div style={{ color: '#fff', textAlign: 'center', marginTop: '2rem' }}>
@@ -20,6 +17,7 @@ const MoviePage = ({ movies }) => {
     );
   }
 
+  // You can directly use `movie` details here
   const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -50,28 +48,26 @@ const MoviePage = ({ movies }) => {
     marginTop: '1rem',
   };
 
+  const genres = movie.genres?.map(genre => genre.title).join(', ') || 'N/A';
+
   return (
     <div style={containerStyle}>
       <div style={videoPlayerStyle}>
-          <ReactPlayer
-                    url={movie.videoUrl}
-                    controls
-                    width='100%'
-                  />
+        <ReactPlayer url={movie.videoUrl} controls width="100%" />
       </div>
 
       <div style={statsStyle}>
         <span>Views: 15k</span>
-        <span>Posts: 2k</span>
+        <span>Posts: 20</span>
         <span>Likes: 12k</span>
       </div>
 
       <div style={movieDetailsStyle}>
         <h2>{movie.title}</h2>
-        <p>{movie.releaseYear || "Year Unknown"} | {movie.runtime || "Unknown runtime"} minutes</p>
-        <p><strong>Rating:</strong> {movie.rating || "Not Rated"}</p>
-        <p><strong>Top Cast:</strong> {movie.cast || "Not available"}</p>
-        <p>{movie.description || "No description available."}</p>
+        <p>{movie.releaseDate || 'Release Date Unknown'} | {movie.duration || 'Unknown duration'} minutes</p>
+        <p><strong>Rating:</strong> {movie.rating || 'Not Rated'}</p>
+        <p><strong>Genres</strong> {genres}</p>
+        <p>{movie.description || 'No description available.'}</p>
       </div>
     </div>
   );
