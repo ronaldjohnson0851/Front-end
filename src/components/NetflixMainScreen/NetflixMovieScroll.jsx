@@ -13,6 +13,11 @@ const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
                 }
   };
 
+  const getThumbnailUrl = (movieTitle) =>
+    movieTitle ? `/video-thumbnails/${movieTitle}.png` : null;
+
+  const defaultThumbnailUrl = 'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480';
+
   return (
     <div style={containerStyle}>
       {title && <h2 style={titleStyle}>{title}</h2>}
