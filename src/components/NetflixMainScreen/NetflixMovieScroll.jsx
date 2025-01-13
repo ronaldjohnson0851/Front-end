@@ -5,7 +5,7 @@ const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
   const navigate = useNavigate();
 
   const handleThumbnailClick = (movieId) => {
-    const selectedMovie = (movies || []).find((movie) => movie.id === movieId);
+    const selectedMovie = (movies || []).find((movie) => movie.contentId === movieId);
     navigate(`/movie/${movieId}`, { state: { movie: selectedMovie, movies } });
 
      if (onMovieSelect) {
@@ -30,11 +30,11 @@ const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
 
             return (
               <img
-                key={movie?.id || Math.random()}
+                key={movie?.contentId || Math.random()}
                 src={thumbnailUrl}
                 alt={movie?.title || 'Default Thumbnail'}
                 style={thumbnailStyle}
-                onClick={() => handleThumbnailClick(movie?.id)}
+                onClick={() => handleThumbnailClick(movie?.contentId)}
                 onError={(e) => {
                   // Set the default thumbnail if the image fails to load
                   e.target.src = defaultThumbnailUrl;

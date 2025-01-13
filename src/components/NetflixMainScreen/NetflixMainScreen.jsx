@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import EmblaCarousel from './EmblaCarousel.tsx';
 import { EmblaOptionsType } from 'embla-carousel'
@@ -66,7 +67,6 @@ const DEFAULT_MOVIES = [
 ];
 
 
-
 const NetflixMainScreen = ({onMovieSelect}) => {
 
   const [movies, setMovies] = useState([]);
@@ -87,11 +87,12 @@ const NetflixMainScreen = ({onMovieSelect}) => {
   }, []); // Fixed the missing dependency array
 
   // Categorize movies by genre
-  const actionMovies = movies.filter(movie => movie.genre.includes('Action'));
-  const comedyMovies = movies.filter(movie => movie.genre.includes('Comedy'));
-  const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
-  const sciFiMovies = movies.filter(movie => movie.genre.includes('Sci-Fi'));
-  const animationMovies = movies.filter(movie => movie.genre.includes('Animation'));
+  const actionMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Action'));
+  const comedyMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Comedy'));
+  const dramaMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Drama'));
+  const sciFiMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Sci-Fi'));
+  const animationMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Animation'));
+
   const sortedMovies = [...movies].sort((a, b) => b.id - a.id);
     const maxMoviesToShow = 10;
     const moviesToShow = sortedMovies.slice(0, maxMoviesToShow);
@@ -100,14 +101,12 @@ const NetflixMainScreen = ({onMovieSelect}) => {
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-
             <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} onMovieSelect={onMovieSelect} />
             <NetflixMovieScroll title="Action Movies" movies={actionMovies} loading={loading} onMovieSelect={onMovieSelect} />
             <NetflixMovieScroll title="Comedy Movies" movies={comedyMovies} loading={loading} onMovieSelect={onMovieSelect}/>
             <NetflixMovieScroll title="Drama Movies" movies={dramaMovies} loading={loading} onMovieSelect={onMovieSelect}/>
             <NetflixMovieScroll title="Sci-Fi Movies" movies={sciFiMovies} loading={loading} onMovieSelect={onMovieSelect}/>
             <NetflixMovieScroll title="Animated Movies" movies={animationMovies} loading={loading} onMovieSelect={onMovieSelect} />
-
         </div>
     );
 
