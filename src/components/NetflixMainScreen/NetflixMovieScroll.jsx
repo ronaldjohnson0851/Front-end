@@ -5,7 +5,7 @@ const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
   const navigate = useNavigate();
 
   const handleThumbnailClick = (movieId) => {
-      const selectedMovie = movies.find((movie) => movie.id === movieId);
+      const selectedMovie = movies.find((movie) => movie.contentId === movieId);
     navigate(`/movie/${movieId}`, { state: { movie: selectedMovie, movies } });
 
      if (onMovieSelect) {
@@ -22,11 +22,11 @@ const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
         <div style={scrollableStyle}>
           {movies.map((movie) => (
             <img
-              key={movie.id}
-              src={movie.thumbnail || 'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480'}
+              key={movie.contentId}
+               src={movie.thumbnail || 'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480'}
               alt={movie.title}
               style={thumbnailStyle}
-              onClick={() => handleThumbnailClick(movie.id)}
+              onClick={() => handleThumbnailClick(movie.contentId)}
             />
           ))}
         </div>
