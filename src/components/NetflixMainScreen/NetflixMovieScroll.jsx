@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
   const navigate = useNavigate();
 
   const handleThumbnailClick = (movieId) => {
-      const selectedMovie = movies.find((movie) => movie.contentId === movieId);
+    const selectedMovie = (movies || []).find((movie) => movie.contentId === movieId);
     navigate(`/movie/${movieId}`, { state: { movie: selectedMovie, movies } });
 
      if (onMovieSelect) {
@@ -25,19 +25,33 @@ const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
         <p style={{ color: 'white' }}>Loading...</p>
       ) : (
         <div style={scrollableStyle}>
-          {movies.map((movie) => (
-            <img
-              key={movie.contentId}
-               src={movie.thumbnail || 'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480'}
-              alt={movie.title}
-              style={thumbnailStyle}
-              onClick={() => handleThumbnailClick(movie.contentId)}
-            />
-          ))}
+          {(movies || []).map((movie) => {
+            const thumbnailUrl = getThumbnailUrl(movie?.title) || defaultThumbnailUrl;
+
+            return (
+              <img
+                key={movie?.contentId || Math.random()}
+                src={thumbnailUrl}
+                alt={movie?.title || 'Default Thumbnail'}
+                style={thumbnailStyle}
+                onClick={() => handleThumbnailClick(movie?.contentId)}
+                onError={(e) => {
+                  // Set the default thumbnail if the image fails to load
+                  e.target.src = defaultThumbnailUrl;
+                }}
+              />
+            );
+          })}
         </div>
       )}
     </div>
   );
+};
+
+NetflixMovieScroll.defaultProps = {
+  title: 'Default Title',
+  movies: [],
+  loading: false,
 };
 
 const containerStyle = {
@@ -66,69 +80,6 @@ const thumbnailStyle = {
   cursor: 'pointer',
   borderRadius: '5px',
   objectFit: 'cover',
-};
-
-const movieDetailStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'flex-start',
-  justifyContent: 'space-between',
-  padding: '20px',
-  backgroundColor: '#000',
-};
-
-const videoSectionStyle = {
-  flex: 2,
-  marginRight: '20px',
-};
-
-const videoStyle = {
-  width: '100%',
-  borderRadius: '10px',
-};
-
-const detailsStyle = {
-  color: '#fff',
-  marginTop: '20px',
-};
-
-const movieTitleStyle = {
-  fontSize: '2rem',
-  fontWeight: 'bold',
-};
-
-const movieStatsStyle = {
-  fontSize: '1rem',
-  color: '#ff0000',
-  margin: '10px 0',
-};
-
-const movieMetaStyle = {
-  fontSize: '1rem',
-  color: '#fff',
-};
-
-const movieCastStyle = {
-  fontSize: '1rem',
-  color: '#fff',
-  margin: '10px 0',
-};
-
-const movieDescriptionStyle = {
-  fontSize: '1rem',
-  color: '#ccc',
-};
-
-const closeButtonStyle = {
-  position: 'absolute',
-  top: '20px',
-  right: '20px',
-  padding: '10px',
-  backgroundColor: '#ff0000',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '5px',
-  cursor: 'pointer',
 };
 
 export default NetflixMovieScroll;
