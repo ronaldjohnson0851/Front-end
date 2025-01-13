@@ -1,48 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const NetflixMovieScroll = ({ title, movies = [] }) => {
-
   const [selectedMovie, setSelectedMovie] = useState(null);
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const scrollContainerRef = useRef(null);
 
   const handleThumbnailClick = (movieId) => {
-    // Navigate to the movie detail page based on movie ID
     navigate(`/movie/${movieId}`);
   };
-
 
   const handleClosePlayer = () => {
     setSelectedMovie(null);
   };
 
+  const handleScroll = (direction) => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const scrollAmount = 220; // Adjust based on thumbnail width
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div style={containerStyle}>
-
       {title && <h2 style={titleStyle}>{title}</h2>}
-      {selectedMovie ? ( <div onClick={() => handleThumbnailClick(selectedMovie.id)}> {/* You can add movie details here */}
-                                 </div>
+      {selectedMovie ? (
+        <div onClick={() => handleThumbnailClick(selectedMovie.id)}>
+          {/* You can add movie details here */}
+        </div>
       ) : (
-        <div style={scrollableStyle}>
-          {movies.map((movie) => (
-            <img
-              key={movie.id}
-              src={movie.thumbnail}
-              alt={movie.title}
-              style={thumbnailStyle}
-              onClick={() => handleThumbnailClick(movie.id)}
-            />
-          ))}
+        <div style={scrollContainerStyle}>
+          <button 
+            style={{...arrowStyle, left: 0}} 
+            onClick={() => handleScroll('left')}
+          >
+            ←
+          </button>
+          <div ref={scrollContainerRef} style={scrollableStyle}>
+            {movies.map((movie) => (
+              <img
+                key={movie.id}
+                src={movie.thumbnail}
+                alt={movie.title}
+                style={thumbnailStyle}
+                onClick={() => handleThumbnailClick(movie.id)}
+              />
+            ))}
+          </div>
+          <button 
+            style={{...arrowStyle, right: 0}} 
+            onClick={() => handleScroll('right')}
+          >
+            →
+          </button>
         </div>
       )}
     </div>
   );
 };
 
-// Styles remain the same as before
+// Updated and new styles
 const containerStyle = {
   width: '100%',
   padding: '10px',
@@ -55,12 +76,21 @@ const titleStyle = {
   marginBottom: '10px',
 };
 
+const scrollContainerStyle = {
+  position: 'relative',
+};
+
 const scrollableStyle = {
   display: 'flex',
   overflowX: 'auto',
   gap: '10px',
-  padding: '10px 0',
+  padding: '10px 40px',
   alignItems: 'center',
+  scrollbarWidth: 'none',
+  '-ms-overflow-style': 'none',
+  '&::-webkit-scrollbar': {
+    display: 'none'
+  },
 };
 
 const thumbnailStyle = {
@@ -71,67 +101,21 @@ const thumbnailStyle = {
   objectFit: 'cover',
 };
 
-const movieDetailStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'flex-start',
-  justifyContent: 'space-between',
-  padding: '20px',
-  backgroundColor: '#000',
-};
-
-const videoSectionStyle = {
-  flex: 2,
-  marginRight: '20px',
-};
-
-const videoStyle = {
-  width: '100%',
-  borderRadius: '10px',
-};
-
-const detailsStyle = {
-  color: '#fff',
-  marginTop: '20px',
-};
-
-const movieTitleStyle = {
-  fontSize: '2rem',
-  fontWeight: 'bold',
-};
-
-const movieStatsStyle = {
-  fontSize: '1rem',
-  color: '#ff0000',
-  margin: '10px 0',
-};
-
-const movieMetaStyle = {
-  fontSize: '1rem',
-  color: '#fff',
-};
-
-const movieCastStyle = {
-  fontSize: '1rem',
-  color: '#fff',
-  margin: '10px 0',
-};
-
-const movieDescriptionStyle = {
-  fontSize: '1rem',
-  color: '#ccc',
-};
-
-const closeButtonStyle = {
+const arrowStyle = {
   position: 'absolute',
-  top: '20px',
-  right: '20px',
-  padding: '10px',
-  backgroundColor: '#ff0000',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  background: 'rgba(0, 0, 0, 0.5)',
   color: '#fff',
   border: 'none',
-  borderRadius: '5px',
+  borderRadius: '50%',
+  width: '40px',
+  height: '40px',
+  fontSize: '20px',
   cursor: 'pointer',
+  zIndex: 1,
 };
+
+// ... (rest of the styles remain unchanged)
 
 export default NetflixMovieScroll;
