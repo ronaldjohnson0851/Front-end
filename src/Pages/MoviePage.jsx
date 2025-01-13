@@ -18,7 +18,7 @@ const MoviePage = () => {
   }
 
   const getVideoUrl = (movieTitle) =>
-    `/videos/${movieTitle.replace(/ /g, '-').toLowerCase()}.mp4`;
+    `/videos/${movieTitle}.mp4`;
 
   // You can directly use `movie` details here
   const containerStyle = {

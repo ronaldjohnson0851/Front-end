@@ -10,7 +10,7 @@ const NetflixMovieScroll = ({ title, movies, loading }) => {
   };
 
     const getThumbnailUrl = (movieTitle) =>
-      `/thumbnails/${movieTitle.replace(/ /g, '-').toLowerCase()}.jpg`;
+      `/thumbnails/${movieTitle}.jpg`;
 
 
   return (
@@ -20,19 +20,25 @@ const NetflixMovieScroll = ({ title, movies, loading }) => {
         <p style={{ color: 'white' }}>Loading...</p>
       ) : (
         <div style={scrollableStyle}>
-          {movies.map((movie) => (
+          {(movies || []).map((movie) => (
             <img
-              key={movie.id}
-              src={getThumbnailUrl(movie.title) || 'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480'}
-              alt={movie.title}
+              key={movie?.id || Math.random()}
+              src={getThumbnailUrl(movie?.title) || 'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480'}
+              alt={movie?.title || 'Default Thumbnail'}
               style={thumbnailStyle}
-              onClick={() => handleThumbnailClick(movie.id)}
+              onClick={() => handleThumbnailClick(movie?.id)}
             />
           ))}
         </div>
       )}
     </div>
   );
+};
+
+NetflixMovieScroll.defaultProps = {
+  title: 'Default Title',
+  movies: [],
+  loading: false,
 };
 
 const containerStyle = {
