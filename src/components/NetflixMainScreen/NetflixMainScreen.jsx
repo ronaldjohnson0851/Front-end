@@ -20,7 +20,7 @@ const SLIDES = [
 //maybe use id: instead of contentId:
 const DEFAULT_MOVIES = [
   {
-    id: 1,
+    contentId: 1,
     title: 'Die Hard',
     duration: '132 minutes',
     rating: 'R',
@@ -29,7 +29,7 @@ const DEFAULT_MOVIES = [
     genre: ['Action'],
   },
   {
-    id: 2,
+    contentId: 2,
     title: '30 Days of Night',
     duration: '114 minutes',
     rating: 'R',
@@ -38,7 +38,7 @@ const DEFAULT_MOVIES = [
     genre: ['Horror'],
   },
   {
-    id: 3,
+    contentId: 3,
     title: 'Toy Story',
     duration: '81 minutes',
     rating: 'G',
@@ -47,7 +47,7 @@ const DEFAULT_MOVIES = [
     genre: ['Animation'],
   },
   {
-    id: 4,
+    contentId: 4,
     title: 'Toy Story 2',
     duration: '92 minutes',
     rating: 'G',
@@ -56,7 +56,7 @@ const DEFAULT_MOVIES = [
     genre: ['Animation'],
   },
   {
-    id: 5,
+    contentId: 5,
     title: 'Back to the Future',
     duration: '116 minutes',
     rating: 'PG',
