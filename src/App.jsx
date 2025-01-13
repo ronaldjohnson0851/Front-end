@@ -69,6 +69,9 @@ const tvShows = [
     id: 1, 
     title: 'Breaking Bad', 
     genre: 'Drama', 
+    rating: 'TV-MA',
+    cast: 'Bryan Cranston, Aaron Paul',
+    releaseYear: '2008',
     thumbnail: '/video-thumbnails/BreakingBad.png', 
     videoUrl: '/Trailers/BreakingBad.mp4',
     description: 'A high school chemistry teacher turned methamphetamine manufacturer partners with a former student to secure his family\'s financial future as he battles terminal lung cancer.'
@@ -77,6 +80,9 @@ const tvShows = [
     id: 2, 
     title: 'YellowStone', 
     genre: 'Drama', 
+    rating: 'TV-MA',
+    cast: 'Kevin Costner, Luke Grimes',
+    releaseYear: '2018',
     thumbnail: '/video-thumbnails/YellowStone.png', 
     videoUrl: '/Trailers/YS.mp4',
     description: 'A ranching family in Montana faces off against others encroaching on their land. '
@@ -85,6 +91,9 @@ const tvShows = [
     id: 3, 
     title: 'The Office', 
     genre: 'Comedy', 
+    rating: 'TV-14',
+    cast: 'Steve Carell, Rainn Wilson',
+    releaseYear: '2005',
     thumbnail: '/video-thumbnails/Office.png', 
     videoUrl: 'https://www.youtube.com/watch?v=LHOtME2DL4g',
     description: 'A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.'
@@ -93,6 +102,9 @@ const tvShows = [
     id: 4, 
     title: 'The Sopranos', 
     genre: 'Drama', 
+    rating: 'TV-MA',
+    cast: 'James Gandolfini, Lorraine Bracco',
+    releaseYear: '1999',
     thumbnail: '/video-thumbnails/Sopranos.png', 
     videoUrl: '/Trailers/TheSop.mp4',
     description: 'New Jersey mob boss Tony Soprano deals with personal and professional issues in his home and business life that affect his mental state, leading him to seek professional psychiatric counseling. '
@@ -101,6 +113,9 @@ const tvShows = [
     id: 5, 
     title: 'Friends', 
     genre: 'Comedy', 
+    rating: 'TV-14',
+    cast: 'Jennifer Anistion, Courteney Cox',
+    releaseYear: '2008',
     thumbnail: '/video-thumbnails/Friends.png', 
     videoUrl: '/Trailers/Friends.mp4',
     description: 'Follows the personal and professional lives of six twenty to thirty year-old friends living in the Manhattan borough of New York City'
@@ -109,6 +124,9 @@ const tvShows = [
     id: 6, 
     title: 'Law and Order', 
     genre: 'Drama', 
+    rating: 'TV-14',
+    cast: 'Sam Waterston, Jerry Orbach',
+    releaseYear: '1990',
     thumbnail: '/video-thumbnails/LawOrder.png', 
     videoUrl: '/Trailers/',
     description: 'Two part drama which focuses on the New York criminal justice system showing a violent crime investigated by the police detectives and then the trial of the accused in court by the prosecutors. '
@@ -117,6 +135,9 @@ const tvShows = [
     id: 7, 
     title: 'Band of Brothers', 
     genre: 'Drama', 
+    rating: 'TV-MA',
+    cast: 'Scott Grimes, Damian Lewis',
+    releaseYear: '2001',
     thumbnail: '/video-thumbnails/BandofBros.png', 
     videoUrl: '/Trailers/',
     description: 'The story of Easy Company of the U.S Army 101st Airborne Division and their mission in World War 2 Europe, from Operation Overlord to V-J Day.'
@@ -124,7 +145,10 @@ const tvShows = [
   { 
     id: 8, 
     title: 'Chernobyl', 
-    genre: 'Historical', 
+    genre: 'Drama', 
+    rating: 'TV-MA',
+    cast: 'Jessie Buckley, Jared Harris',
+    releaseYear: '2019',
     thumbnail: '/video-thumbnails/Chernobyl.png', 
     videoUrl: '/Trailers/',
     description: 'In April 1986, the city of Chernobyl in the Soviet Union suffers one of the worst nuclear disasters in the history of mankind. Consequently, many heroes put their lives on the line in the following days, weeks and months.'
