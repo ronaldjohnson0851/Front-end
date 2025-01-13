@@ -1,4 +1,3 @@
-
 import PostSectionDisplay from './components/Posts/Posts';
 import ThreadDiscussion from './components/Posts/PostsComponent';
 import React, { useState, useEffect } from 'react';
@@ -13,8 +12,6 @@ import Account from "./Pages/Account";
 import TVShowPage from './Pages/TVShowPage';
 import TVShowDetails from './Pages/TVShowDetails';
 import MoviesPage from './Pages/MoviesPage';
-
-
 
 
 
