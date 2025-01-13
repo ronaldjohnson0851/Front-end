@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "embla-carousel": "^8.5.1",
     "embla-carousel-autoplay": "^8.5.1",

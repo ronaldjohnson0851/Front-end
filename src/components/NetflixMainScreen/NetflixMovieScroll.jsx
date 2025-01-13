@@ -1,18 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const NetflixMovieScroll = ({ title, movies = [] }) => {
-  const [selectedMovie, setSelectedMovie] = useState(null);
+const NetflixMovieScroll = ({ title, movies, loading, onMovieSelect }) => {
   const navigate = useNavigate();
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef(null); // Define the ref
 
   const handleThumbnailClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
+    const selectedMovie = (movies || []).find((movie) => movie.contentId === movieId);
+    navigate(`/movie/${movieId}`, { state: { movie: selectedMovie, movies } });
+
+    if (onMovieSelect) {
+      onMovieSelect(movieId); // Notify parent Page of the selected movie
+    }
   };
 
-  const handleClosePlayer = () => {
-    setSelectedMovie(null);
-  };
+  const getThumbnailUrl = (movieTitle) =>
+    movieTitle ? `/video-thumbnails/${movieTitle}.png` : null;
+
+  const defaultThumbnailUrl =
+    'https://www.shutterstock.com/shutterstock/videos/1102576935/thumb/2.jpg?ip=x480';
 
   const handleScroll = (direction) => {
     const container = scrollContainerRef.current;
@@ -20,7 +26,7 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
       const scrollAmount = 220; // Adjust based on thumbnail width
       container.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -28,31 +34,38 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
   return (
     <div style={containerStyle}>
       {title && <h2 style={titleStyle}>{title}</h2>}
-      {selectedMovie ? (
-        <div onClick={() => handleThumbnailClick(selectedMovie.id)}>
-          {/* You can add movie details here */}
-        </div>
+      {loading ? (
+        <p style={{ color: 'white' }}>Loading...</p>
       ) : (
         <div style={scrollContainerStyle}>
-          <button 
-            style={{...arrowStyle, left: 0}} 
+          <button
+            style={{ ...arrowStyle, left: 0 }}
             onClick={() => handleScroll('left')}
           >
             ←
           </button>
           <div ref={scrollContainerRef} style={scrollableStyle}>
-            {movies.map((movie) => (
-              <img
-                key={movie.id}
-                src={movie.thumbnail}
-                alt={movie.title}
-                style={thumbnailStyle}
-                onClick={() => handleThumbnailClick(movie.id)}
-              />
-            ))}
+            {(movies || []).map((movie) => {
+              const thumbnailUrl =
+                getThumbnailUrl(movie?.title) || defaultThumbnailUrl;
+
+              return (
+                <img
+                  key={movie?.contentId || Math.random()}
+                  src={thumbnailUrl}
+                  alt={movie?.title || 'Default Thumbnail'}
+                  style={thumbnailStyle}
+                  onClick={() => handleThumbnailClick(movie?.contentId)}
+                  onError={(e) => {
+                    // Set the default thumbnail if the image fails to load
+                    e.target.src = defaultThumbnailUrl;
+                  }}
+                />
+              );
+            })}
           </div>
-          <button 
-            style={{...arrowStyle, right: 0}} 
+          <button
+            style={{ ...arrowStyle, right: 0 }}
             onClick={() => handleScroll('right')}
           >
             →
@@ -63,7 +76,12 @@ const NetflixMovieScroll = ({ title, movies = [] }) => {
   );
 };
 
-// Updated and new styles
+NetflixMovieScroll.defaultProps = {
+  title: 'Default Title',
+  movies: [],
+  loading: false,
+};
+
 const containerStyle = {
   width: '100%',
   padding: '10px',
@@ -84,13 +102,8 @@ const scrollableStyle = {
   display: 'flex',
   overflowX: 'auto',
   gap: '10px',
-  padding: '10px 40px',
+  padding: '10px 0',
   alignItems: 'center',
-  scrollbarWidth: 'none',
-  '-ms-overflow-style': 'none',
-  '&::-webkit-scrollbar': {
-    display: 'none'
-  },
 };
 
 const thumbnailStyle = {
@@ -115,7 +128,5 @@ const arrowStyle = {
   cursor: 'pointer',
   zIndex: 1,
 };
-
-// ... (rest of the styles remain unchanged)
 
 export default NetflixMovieScroll;
