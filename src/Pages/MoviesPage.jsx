@@ -45,7 +45,7 @@ const MoviesPage = ({ movies }) => {
               <div id={`category-${category}`} style={scrollableStyle}>
                 {categoryMovies.map((movie) => (
                   <div
-                    key={movie.id}
+                    key={movie.contentId}
                     style={movieCardStyle}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'scale(1.05)';
@@ -53,7 +53,7 @@ const MoviesPage = ({ movies }) => {
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'scale(1)';
                     }}
-                    onClick={() => handleMovieClick(movie.id)}
+                    onClick={() => handleMovieClick(movie.contentId)}
                   >
                     <img
                       src={movie.thumbnail}

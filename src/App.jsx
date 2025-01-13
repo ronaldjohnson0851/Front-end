@@ -1,4 +1,3 @@
-
 import PostSectionDisplay from './components/Posts/Posts';
 import ThreadDiscussion from './components/Posts/PostsComponent';
 import React, { useState, useEffect } from 'react';
@@ -13,8 +12,6 @@ import Account from "./Pages/Account";
 import TVShowPage from './Pages/TVShowPage';
 import TVShowDetails from './Pages/TVShowDetails';
 import MoviesPage from './Pages/MoviesPage';
-
-
 
 
 
@@ -66,7 +63,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
 
 
   const movies = [
-            { id: 1,
+            { contentId: 1,
               title: 'Die Hard',
               genre: 'Action',
               genre: 'Drama', 
@@ -78,7 +75,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
               thumbnail: '/video-thumbnails/Die Hard.png',
               videoUrl: '/Trailers/DieHard.mp4'
             },
-            { id: 2,
+            { contentId: 2,
               title: '30 Days of Night',
               genre: 'Horror',
               rating: 'R',
@@ -89,7 +86,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
               thumbnail: '/video-thumbnails/30DaysNight.png',
               videoUrl: '/Trailers/30DON.mp4' 
             },
-            { id: 3,
+            { contentId: 3,
               title: 'Back to the Future',
               genre: 'Sci-fi',
               rating: 'PG',
@@ -100,7 +97,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
               thumbnail: '/video-thumbnails/Back to the Future.png',
               videoUrl: '/Trailers/BTTF.mp4' 
             },
-            { id: 4,
+            { contentId: 4,
               title: 'the Iron Giant', 
               genre: 'Animation',
               rating: 'PG',
@@ -111,7 +108,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
               thumbnail: '/video-thumbnails/Iron Giant.png',
               videoUrl: '/Trailers/IronGiant.mp4' 
             },
-            { id: 5,
+            { contentId: 5,
               title: 'Interstellar',
               genre: 'Sci-fi',
               rating: 'PG-13',
@@ -122,7 +119,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
               thumbnail: '/video-thumbnails/Interstellar.png',
               videoUrl: '/Trailers/Interstellar.mp4' 
             },
-            { id: 6,
+            { contentId: 6,
               title: 'Toy Story',
               genre: 'Animation',
               rating: 'G',
@@ -133,7 +130,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
               thumbnail: '/video-thumbnails/Toy Story.png',
               videoUrl: '/Trailers/ToyStory.mp4' 
             },
-            { id: 7,
+            { contentId: 7,
               title: 'Toy Story 2',
               genre: 'Animation',
               rating: 'G',
@@ -152,7 +149,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
 
 const tvShows = [
   { 
-    id: 1, 
+    contentId: 1,
     title: 'Breaking Bad', 
     genre: 'Drama', 
     rating: 'TV-MA',
@@ -164,7 +161,7 @@ const tvShows = [
     description: 'A high school chemistry teacher turned methamphetamine manufacturer partners with a former student to secure his family\'s financial future as he battles terminal lung cancer.'
   },
   { 
-    id: 2, 
+    contentId: 2,
     title: 'YellowStone', 
     genre: 'Drama', 
     rating: 'TV-MA',
@@ -176,7 +173,7 @@ const tvShows = [
     description: 'A ranching family in Montana faces off against others encroaching on their land. '
   },
   { 
-    id: 3, 
+    contentId: 3,
     title: 'The Office', 
     genre: 'Comedy', 
     rating: 'TV-14',
@@ -188,7 +185,7 @@ const tvShows = [
     description: 'A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.'
   },
   { 
-    id: 4, 
+    contentId: 4,
     title: 'The Sopranos', 
     genre: 'Drama', 
     rating: 'TV-MA',
@@ -200,7 +197,7 @@ const tvShows = [
     description: 'New Jersey mob boss Tony Soprano deals with personal and professional issues in his home and business life that affect his mental state, leading him to seek professional psychiatric counseling. '
   },
   { 
-    id: 5, 
+    contentId: 5,
     title: 'Friends', 
     genre: 'Comedy', 
     rating: 'TV-14',
@@ -212,7 +209,7 @@ const tvShows = [
     description: 'Follows the personal and professional lives of six twenty to thirty year-old friends living in the Manhattan borough of New York City'
   },
   { 
-    id: 6, 
+    contentId: 6,
     title: 'Law and Order', 
     genre: 'Drama', 
     rating: 'TV-14',
@@ -224,7 +221,7 @@ const tvShows = [
     description: 'Two part drama which focuses on the New York criminal justice system showing a violent crime investigated by the police detectives and then the trial of the accused in court by the prosecutors. '
   },
   { 
-    id: 7, 
+    contentId: 7,
     title: 'Band of Brothers', 
     genre: 'Drama', 
     rating: 'TV-MA',
@@ -236,7 +233,7 @@ const tvShows = [
     description: 'The story of Easy Company of the U.S Army 101st Airborne Division and their mission in World War 2 Europe, from Operation Overlord to V-J Day.'
   },
   { 
-    id: 8, 
+    contentId: 8,
     title: 'Chernobyl', 
     genre: 'Drama', 
     rating: 'TV-MA',
@@ -254,19 +251,19 @@ const tvShows = [
     <Router>
     <div style={layoutStyle}>
       <MainHeader />
-
         <div style={contentContainer}>
           {/* Netflix Column */}
           <div style={netflixColumn}>
             <Routes>
               {/* Netflix Main Screen */}
               <Route path="/" element={<NetflixMainScreen onMovieSelect={handleMovieSelect}/>} />
-
               {/* Movie Page */}
               <Route path="/movie/:id" element={<MoviePage />} />
-
-
-
+              <Route path="/upload-movie" element={<UploadMovie />} />
+              <Route path="/my-profile" element={<Account />} />
+              <Route path="/tvshows" element={<TVShowPage tvShows={tvShows} />} />
+              <Route path="/tvshow/:id" element={<TVShowDetails tvShows={tvShows} />} />
+              <Route path="/movies" element={<MoviesPage movies={movies} />} />
           </Routes>
         </div>
         <div style={postsSection}>
