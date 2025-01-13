@@ -10,7 +10,10 @@ const MainHeader = () => {
 
   return (
     <header style={headerStyle}>
-      <img src={logo} alt="Logo" style={logoStyle} />
+      <Link to="/">
+        <img src={logo} alt="Logo" style={logoStyle} />
+      </Link>
+
       <HeaderMenu />
       <div style={rightSectionStyle}>
       <Link to="/upload-movie" style={{ textDecoration: 'none' }}>
