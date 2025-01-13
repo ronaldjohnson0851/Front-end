@@ -42,11 +42,11 @@ const TVShowPage = ({ tvShows = [] }) => {
               <div id={`category-${category}`} style={scrollableStyle}>
                 {shows.map((show) => (
                   <img
-                    key={show.id}
+                    key={show.contentId}
                     src={show.thumbnail}
                     alt={show.title}
                     style={thumbnailStyle}
-                    onClick={() => navigate(`/tvshow/${show.id}`)}
+                    onClick={() => navigate(`/tvshow/${show.contentId}`)}
                   />
                 ))}
               </div>
