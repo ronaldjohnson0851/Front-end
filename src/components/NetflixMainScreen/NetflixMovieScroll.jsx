@@ -1,12 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const NetflixMovieScroll = ({ title, movies, loading }) => {
+const NetflixMovieScroll = ({ title, movies, loading , onMovieSelect}) => {
   const navigate = useNavigate();
 
   const handleThumbnailClick = (movieId) => {
     const selectedMovie = (movies || []).find((movie) => movie.id === movieId);
     navigate(`/movie/${movieId}`, { state: { movie: selectedMovie, movies } });
+
+     if (onMovieSelect) {
+                  onMovieSelect(movieId) // DD - Notify parent Page of the selected movie
+                }
   };
 
   const getThumbnailUrl = (movieTitle) =>

@@ -15,6 +15,7 @@ const SLIDES = [
     'carousel-photos/interstellarcaro.png',
 ];
 
+
 //maybe use id: instead of contentId:
 const DEFAULT_MOVIES = [
   {
@@ -64,7 +65,10 @@ const DEFAULT_MOVIES = [
   },
 ];
 
-const NetflixMainScreen = () => {
+
+
+const NetflixMainScreen = ({onMovieSelect}) => {
+
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -96,12 +100,14 @@ const NetflixMainScreen = () => {
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-            <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} />
-            <NetflixMovieScroll title="Action Movies" movies={actionMovies} loading={loading} />
-            <NetflixMovieScroll title="Comedy Movies" movies={comedyMovies} loading={loading} />
-            <NetflixMovieScroll title="Drama Movies" movies={dramaMovies} loading={loading} />
-            <NetflixMovieScroll title="Sci-Fi Movies" movies={sciFiMovies} loading={loading} />
-            <NetflixMovieScroll title="Animated Movies" movies={animationMovies} loading={loading} />
+
+            <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} onMovieSelect={onMovieSelect} />
+            <NetflixMovieScroll title="Action Movies" movies={actionMovies} loading={loading} onMovieSelect={onMovieSelect} />
+            <NetflixMovieScroll title="Comedy Movies" movies={comedyMovies} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="Drama Movies" movies={dramaMovies} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="Sci-Fi Movies" movies={sciFiMovies} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="Animated Movies" movies={animationMovies} loading={loading} onMovieSelect={onMovieSelect} />
+
         </div>
     );
 
