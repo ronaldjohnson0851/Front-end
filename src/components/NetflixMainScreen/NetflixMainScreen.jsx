@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import EmblaCarousel from './EmblaCarousel.tsx';
 import { EmblaOptionsType } from 'embla-carousel'
