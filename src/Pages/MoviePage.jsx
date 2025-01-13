@@ -18,7 +18,7 @@ const MoviePage = () => {
   }
 
   const getVideoUrl = (movieTitle) =>
-    `/videos/${movieTitle}.mp4`;
+    `/Trailers/${movieTitle}.mp4`;
 
   // You can directly use `movie` details here
   const containerStyle = {
