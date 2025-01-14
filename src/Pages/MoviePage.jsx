@@ -2,11 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 
-
-// { movies = [] } add this as a prop once we have data
 const MoviePage = ({ movies }) => {
   const { id } = useParams();
 
+  const getRandomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
   const movie = movies.find((m) => m.id === Number(id));
 
@@ -40,8 +41,8 @@ const MoviePage = ({ movies }) => {
   const statsStyle = {
     display: 'flex',
     justifyContent: 'space-between',
-    fontSize: '1.2rem',
-    margin: '1rem 0',
+    fontSize: '1rem',
+    marginTop: '1rem',
     color: '#e50914',
   };
 
@@ -52,19 +53,19 @@ const MoviePage = ({ movies }) => {
   return (
     <div style={containerStyle}>
       <div style={videoPlayerStyle}>
-          <ReactPlayer
-                     url={movie.videoUrl}
-                     controls
-                     width='100%'
-                     height='100%'
-                     style={videoPlayerStyle}
-                  />
+        <ReactPlayer
+          url={movie.videoUrl}
+          controls
+          width='100%'
+          height='100%'
+          style={videoPlayerStyle}
+        />
       </div>
 
       <div style={statsStyle}>
-        <span>Views: 15k</span>
-        <span>Posts: 2k</span>
-        <span>Likes: 12k</span>
+        <span>Views: {getRandomNumber(10000, 1000000)}</span>
+        <span>Posts: {getRandomNumber(500, 3000)}</span>
+        <span>Likes: {getRandomNumber(5000, 20000)}</span>
       </div>
 
       <div style={movieDetailsStyle}>

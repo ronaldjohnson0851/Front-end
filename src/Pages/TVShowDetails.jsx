@@ -7,6 +7,9 @@ const TVShowDetails = ({ tvShows }) => {
   const { id } = useParams();
   const location = useLocation();
   const show = location.state?.show || tvShows.find(s => s.id === Number(id));
+  const getRandomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
   if (!show) {
     return (
@@ -60,9 +63,9 @@ const TVShowDetails = ({ tvShows }) => {
       </div>
 
       <div style={statsStyle}>
-        <span>Views: 15k</span>
-        <span>Posts: 2k</span>
-        <span>Likes: 12k</span>
+        <span>Views: {getRandomNumber(10000, 1000000)}</span>
+        <span>Posts: {getRandomNumber(500, 3000)}</span>
+        <span>Likes: {getRandomNumber(5000, 20000)}</span>
       </div>
 
       <div style={showDetailsStyle}>

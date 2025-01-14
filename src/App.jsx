@@ -61,8 +61,8 @@ const AppLayout = () => {
               rating: 'R',
               cast: 'Bruce Willis, Alan Rickman',
               releaseYear: '1988',
-              length: '132 minutes',
-              description: 'A New York City police officer tries to save his estranged wife and several others taken hostage by terrorists during a christmas party at the Nakatomi Plaza in Los Angeles',
+              runtime: '132',
+              description: 'A New York City police officer tries to save his estranged wife and several others taken hostage by terrorists during a christmas party at the Nakatomi Plaza in Los Angeles. A christmas movie',
               thumbnail: '/video-thumbnails/Die Hard.png',
               videoUrl: '/Trailers/DieHard.mp4'
             },
@@ -72,7 +72,7 @@ const AppLayout = () => {
               rating: 'R',
               cast: 'Josh Hartnett, Danny Huston',
               releaseYear: '2007',
-              length: '114 minutes',
+              runtime: '114',
               description: 'After an Alaskan town is plunged into darkness for a month, it is attacked by a bloodthirsty gang of vampires.',
               thumbnail: '/video-thumbnails/30DaysNight.png',
               videoUrl: '/Trailers/30DON.mp4' 
@@ -83,7 +83,7 @@ const AppLayout = () => {
               rating: 'PG',
               cast: 'Michael J. Fox, Christopher Lloyd',
               releaseYear: '1985',
-              length: '116 minutes',
+              runtime: '116',
               description: 'Marty Mcfly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.',
               thumbnail: '/video-thumbnails/Back to the Future.png',
               videoUrl: '/Trailers/BTTF.mp4' 
@@ -94,7 +94,7 @@ const AppLayout = () => {
               rating: 'PG',
               cast: 'Vin Diesel, Jennifer Aniston',
               releaseYear: '1999',
-              length: '87 minutes',
+              runtime: '87',
               description: 'A young boy befriends a giant robot from outer space that a paranoid government agent wants to destroy.  ',
               thumbnail: '/video-thumbnails/Iron Giant.png',
               videoUrl: '/Trailers/IronGiant.mp4' 
@@ -105,7 +105,7 @@ const AppLayout = () => {
               rating: 'PG-13',
               cast: 'Mathew McConaughey, Anne Hathaway',
               releaseYear: '2014',
-              length: '169 minutes',
+              runtime: '169',
               description: 'When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.',
               thumbnail: '/video-thumbnails/Interstellar.png',
               videoUrl: '/Trailers/Interstellar.mp4' 
@@ -116,7 +116,7 @@ const AppLayout = () => {
               rating: 'G',
               cast: 'Tom Hanks, Tim Allen',
               releaseYear: '1995',
-              length: '81 minutes',
+              runtime: '81',
               description: 'A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as the top toy in a boy’s bedroom.',
               thumbnail: '/video-thumbnails/Toy Story.png',
               videoUrl: '/Trailers/ToyStory.mp4' 
@@ -127,7 +127,7 @@ const AppLayout = () => {
               rating: 'G',
               cast: 'Tom Hanks, Tim Allen',
               releaseYear: '1999',
-              length: '92 minutes',
+              runtime: '92',
               description: 'When Woody is stolen by a toy collector, Buzz and his friends set out on a rescue mission to save Woody before he becomes a museum toy property with his roundup gang Jessie, Prospector, and Bullseye.',
               thumbnail: '/video-thumbnails/Toy Story2.png',
               videoUrl: '/Trailers/ToyStory2.mp4' 
