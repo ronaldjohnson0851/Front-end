@@ -135,7 +135,7 @@ import SearchByHashtag from "./SearchByHashtag";
         </button>
         <input
           type="text"
-          placeholder="Write your post..."
+          placeholder="Write your Hot Takes..."
           value={postText}
           maxLength={255}
           onChange={handlePostInputChange}

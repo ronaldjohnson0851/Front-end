@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const MainHeader = () => {
+const MainHeader = ({onMovieSelect}) => {
       const [profileHovered, setProfileHovered] = useState(false);
 
   return (

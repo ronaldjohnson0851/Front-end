@@ -247,7 +247,7 @@ const tvShows = [
   return (
     <Router>
     <div style={layoutStyle}>
-      <MainHeader />
+      <MainHeader onMovieSelect={handleMovieSelect}/>
         <div style={contentContainer}>
           {/* Netflix Column */}
           <div style={netflixColumn}>
