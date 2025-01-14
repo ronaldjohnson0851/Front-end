@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import EmblaCarousel from './EmblaCarousel.tsx';
 import { EmblaOptionsType } from 'embla-carousel'
@@ -87,11 +86,11 @@ const NetflixMainScreen = ({onMovieSelect}) => {
   }, []); // Fixed the missing dependency array
 
   // Categorize movies by genre
-  const actionMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Action'));
-  const comedyMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Comedy'));
-  const dramaMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Drama'));
-  const sciFiMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Sci-Fi'));
-  const animationMovies = movies.filter(movie => Array.isArray(movie.genre) && movie.genre.includes('Animation'));
+  const comedyMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Comedy'));
+  const dramaMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Drama'));
+  const sciFiMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Sci-Fi'));
+  const animationMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Animation'));
+  const actionMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Action'));
 
   const sortedMovies = [...movies].sort((a, b) => b.id - a.id);
     const maxMoviesToShow = 10;

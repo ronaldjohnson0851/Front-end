@@ -143,9 +143,6 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
             },
                   ];
 
-          
-
-
 
 const tvShows = [
   { 
