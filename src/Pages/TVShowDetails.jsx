@@ -1,74 +1,77 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Play } from 'lucide-react';
+// TVShowDetails.jsx
+import React from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
-const TVShowDetails = ({ tvShows = [], id, onBack }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Loading state with skeleton animation
-  if (!tvShows.length) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-8">
-        <div className="w-4/5 h-96 bg-gray-800 animate-pulse rounded-lg"></div>
-        <div className="w-64 h-8 bg-gray-800 animate-pulse mt-4 rounded"></div>
-        <div className="w-48 h-6 bg-gray-800 animate-pulse mt-2 rounded"></div>
-      </div>
-    );
-  }
-
-  const show = tvShows.find((tvShow) => tvShow.id === Number(id));
+const TVShowDetails = ({ tvShows }) => {
+  const { id } = useParams();
+  const location = useLocation();
+  const show = location.state?.show || tvShows.find(s => s.id === Number(id));
 
   if (!show) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-8">
-        <h1 className="text-2xl font-bold mb-4">Show Not Found</h1>
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-4 py-2 bg-red-600 rounded-md hover:bg-red-700 transition-colors"
-        >
-          <ArrowLeft size={20} />
-          Back to TV Shows
-        </button>
+      <div style={{ color: '#fff', textAlign: 'center', marginTop: '2rem' }}>
+        <h1>TV Show Not Found</h1>
       </div>
     );
   }
 
-  return (
-    <div className="flex flex-col items-center min-h-screen bg-black text-white p-8">
-      {/* Back button */}
-      <button
-        onClick={onBack}
-        className="self-start flex items-center gap-2 px-4 py-2 mb-6 bg-transparent hover:bg-gray-800 rounded-md transition-colors"
-      >
-        <ArrowLeft size={20} />
-        Back to TV Shows
-      </button>
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#000',
+    color: '#fff',
+    padding: '2rem',
+    boxSizing: 'border-box',
+  };
 
-      {/* Video container */}
-      <div className="relative w-4/5 aspect-video rounded-lg overflow-hidden bg-gray-800">
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Play size={48} className="text-gray-600" />
-          </div>
-        )}
-        <video
-          src={show.videoUrl}
+  const videoPlayerStyle = {
+    width: '100%',
+    aspectRatio: '16/9',
+    maxWidth: '800px', 
+    margin: '0 auto',
+  };
+
+  const statsStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    fontSize: '1.2rem',
+    margin: '1rem 0',
+    color: '#e50914',
+  };
+
+  const showDetailsStyle = {
+    marginTop: '1rem',
+  };
+
+  return (
+    <div style={containerStyle}>
+      <div style={videoPlayerStyle}>
+        <ReactPlayer
+          url={show.videoUrl}
           controls
-          className="w-full h-full rounded-lg"
-          onLoadedData={() => setIsLoading(false)}
+          width='100%'
+          height='100%'
+          style={videoPlayerStyle}
         />
       </div>
 
-      {/* Show details */}
-      <div className="w-4/5 mt-8">
-        <h1 className="text-4xl font-bold mb-4">{show.title}</h1>
-        <div className="flex items-center gap-4 mb-4">
-          <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-            {show.genre}
-          </span>
-        </div>
-        <p className="text-gray-300 text-lg leading-relaxed">
-          {show.description || 'No description available.'}
-        </p>
+      <div style={statsStyle}>
+        <span>Views: 15k</span>
+        <span>Posts: 2k</span>
+        <span>Likes: 12k</span>
+      </div>
+
+      <div style={showDetailsStyle}>
+        <h2>{show.title}</h2>
+        <p>{show.releaseYear || "Year Unknown"} | {show.seasons || "Unknown"} seasons</p>
+        <p><strong>Genre:</strong> {show.genre}</p>
+        <p><strong>Rating:</strong> {show.rating || "Not Rated"}</p>
+        <p><strong>Top Cast:</strong> {show.cast || "Not available"}</p>
+        <p>{show.description || "No description available."}</p>
       </div>
     </div>
   );
