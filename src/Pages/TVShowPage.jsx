@@ -25,6 +25,7 @@ const TVShowPage = ({ tvShows = [] }) => {
     }
   };
 
+
   return (
     <div style={componentTVShowScreenStyle}>
       <h1 style={mainTitleStyle}>TV Shows</h1>

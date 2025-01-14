@@ -13,8 +13,13 @@ const MoviesPage = ({ movies }) => {
     Horror: movies.filter((movie) => movie.genre?.includes('Horror')),
   };
 
+//   const handleMovieClick = (movieId) => {
+//     navigate(`/movie/${movieId}`);
+//   };
+
   const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
+    const selectedMovie = movies.find((movie) => movie.contentId === movieId);
+    navigate(`/movie/${movieId}`, { state: { movie: selectedMovie } });
   };
 
   const handleScroll = (direction, categoryId) => {
