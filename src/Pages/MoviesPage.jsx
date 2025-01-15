@@ -41,8 +41,11 @@ const MoviesPage = ({ movies }) => {
           <div key={category} style={categoryStyle}>
             <h2 style={categoryTitleStyle}>{category}</h2>
             <div style={scrollContainerStyle}>
+
               <button
                 style={{...arrowStyle, left: 0}}
+
+
                 onClick={() => handleScroll('left', `category-${category}`)}
               >
                 ←
@@ -69,8 +72,10 @@ const MoviesPage = ({ movies }) => {
                   </div>
                 ))}
               </div>
+
               <button
                 style={{...arrowStyle, right: 0}}
+
                 onClick={() => handleScroll('right', `category-${category}`)}
               >
                 →
@@ -155,4 +160,6 @@ const arrowStyle = {
   zIndex: 1,
 };
 
+
 export default MoviesPage;
+

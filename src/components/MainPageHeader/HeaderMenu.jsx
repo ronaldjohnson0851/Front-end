@@ -7,7 +7,9 @@ function HeaderMenu({onMovieSelect}) {
   const [searchQuery, setSearchQuery] = useState(''); // State to handle search input
   const navigate = useNavigate();
 
+
 const handleHomeClick = (movieId) => {
+
     if (onMovieSelect) {
       onMovieSelect(" "); // Notify parent Page of the selected movie
     }
@@ -46,6 +48,7 @@ const handleHomeClick = (movieId) => {
   ];
 
   return (
+
       <header>
         <nav>
           <ul className="menu">
@@ -78,6 +81,7 @@ const handleHomeClick = (movieId) => {
                 onChange={handleSearchChange}
                 className="search-box"
               />
+
             </li>
           </ul>
         </nav>

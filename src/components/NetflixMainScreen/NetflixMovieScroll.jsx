@@ -130,3 +130,4 @@ const arrowStyle = {
 };
 
 export default NetflixMovieScroll;
+

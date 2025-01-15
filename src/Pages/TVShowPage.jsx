@@ -34,8 +34,10 @@ const TVShowPage = ({ tvShows = [] }) => {
           <div key={category} style={categoryContainerStyle}>
             <h2 style={titleStyle}>{category}</h2>
             <div style={scrollContainerStyle}>
+
               <button
                 style={{...arrowStyle, left: 0}}
+
                 onClick={() => handleScroll('left', `category-${category}`)}
               >
                 ←
@@ -51,8 +53,10 @@ const TVShowPage = ({ tvShows = [] }) => {
                   />
                 ))}
               </div>
+
               <button
                 style={{...arrowStyle, right: 0}}
+
                 onClick={() => handleScroll('right', `category-${category}`)}
               >
                 →
