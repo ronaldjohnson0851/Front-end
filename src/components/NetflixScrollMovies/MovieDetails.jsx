@@ -7,7 +7,6 @@ const MovieDetails = () => {
   const location = useLocation(); // Access movie data passed via state
   const movie = location.state?.movie;
 
-
   if (!movie) {
     return <p>Movie not found.</p>;
   }
