@@ -25,6 +25,7 @@ const TVShowPage = ({ tvShows = [] }) => {
     }
   };
 
+
   return (
     <div style={componentTVShowScreenStyle}>
       <h1 style={mainTitleStyle}>TV Shows</h1>
@@ -33,8 +34,8 @@ const TVShowPage = ({ tvShows = [] }) => {
           <div key={category} style={categoryContainerStyle}>
             <h2 style={titleStyle}>{category}</h2>
             <div style={scrollContainerStyle}>
-              <button 
-                style={{...arrowStyle, left: 0}} 
+              <button
+                style={{...arrowStyle, left: 0}}
                 onClick={() => handleScroll('left', `category-${category}`)}
               >
                 ←
@@ -42,16 +43,16 @@ const TVShowPage = ({ tvShows = [] }) => {
               <div id={`category-${category}`} style={scrollableStyle}>
                 {shows.map((show) => (
                   <img
-                    key={show.id}
+                    key={show.contentId}
                     src={show.thumbnail}
                     alt={show.title}
                     style={thumbnailStyle}
-                    onClick={() => navigate(`/tvshow/${show.id}`)}
+                    onClick={() => navigate(`/tvshow/${show.contentId}`)}
                   />
                 ))}
               </div>
-              <button 
-                style={{...arrowStyle, right: 0}} 
+              <button
+                style={{...arrowStyle, right: 0}}
                 onClick={() => handleScroll('right', `category-${category}`)}
               >
                 →

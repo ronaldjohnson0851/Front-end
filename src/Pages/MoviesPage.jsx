@@ -13,8 +13,13 @@ const MoviesPage = ({ movies }) => {
     Horror: movies.filter((movie) => movie.genre?.includes('Horror')),
   };
 
+//   const handleMovieClick = (movieId) => {
+//     navigate(`/movie/${movieId}`);
+//   };
+
   const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
+    const selectedMovie = movies.find((movie) => movie.contentId === movieId);
+    navigate(`/movie/${movieId}`, { state: { movie: selectedMovie } });
   };
 
   const handleScroll = (direction, categoryId) => {
@@ -36,8 +41,8 @@ const MoviesPage = ({ movies }) => {
           <div key={category} style={categoryStyle}>
             <h2 style={categoryTitleStyle}>{category}</h2>
             <div style={scrollContainerStyle}>
-              <button 
-                style={{...arrowStyle, left: 0}} 
+              <button
+                style={{...arrowStyle, left: 0}}
                 onClick={() => handleScroll('left', `category-${category}`)}
               >
                 ←
@@ -45,7 +50,7 @@ const MoviesPage = ({ movies }) => {
               <div id={`category-${category}`} style={scrollableStyle}>
                 {categoryMovies.map((movie) => (
                   <div
-                    key={movie.id}
+                    key={movie.contentId}
                     style={movieCardStyle}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'scale(1.05)';
@@ -53,7 +58,7 @@ const MoviesPage = ({ movies }) => {
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'scale(1)';
                     }}
-                    onClick={() => handleMovieClick(movie.id)}
+                    onClick={() => handleMovieClick(movie.contentId)}
                   >
                     <img
                       src={movie.thumbnail}
@@ -64,8 +69,8 @@ const MoviesPage = ({ movies }) => {
                   </div>
                 ))}
               </div>
-              <button 
-                style={{...arrowStyle, right: 0}} 
+              <button
+                style={{...arrowStyle, right: 0}}
                 onClick={() => handleScroll('right', `category-${category}`)}
               >
                 →
@@ -150,4 +155,6 @@ const arrowStyle = {
   zIndex: 1,
 };
 
+
 export default MoviesPage;
+

@@ -19,7 +19,7 @@ const SLIDES = [
 //maybe use id: instead of contentId:
 const DEFAULT_MOVIES = [
   {
-    id: 1,
+    contentId: 1,
     title: 'Die Hard',
     duration: '132 minutes',
     rating: 'R',
@@ -28,7 +28,7 @@ const DEFAULT_MOVIES = [
     genre: ['Action'],
   },
   {
-    id: 2,
+    contentId: 2,
     title: '30 Days of Night',
     duration: '114 minutes',
     rating: 'R',
@@ -37,7 +37,7 @@ const DEFAULT_MOVIES = [
     genre: ['Horror'],
   },
   {
-    id: 3,
+    contentId: 3,
     title: 'Toy Story',
     duration: '81 minutes',
     rating: 'G',
@@ -46,7 +46,7 @@ const DEFAULT_MOVIES = [
     genre: ['Animation'],
   },
   {
-    id: 4,
+    contentId: 4,
     title: 'Toy Story 2',
     duration: '92 minutes',
     rating: 'G',
@@ -55,7 +55,7 @@ const DEFAULT_MOVIES = [
     genre: ['Animation'],
   },
   {
-    id: 5,
+    contentId: 5,
     title: 'Back to the Future',
     duration: '116 minutes',
     rating: 'PG',
@@ -64,7 +64,6 @@ const DEFAULT_MOVIES = [
     genre: ['Sci-fi'],
   },
 ];
-
 
 
 const NetflixMainScreen = ({onMovieSelect}) => {
@@ -87,11 +86,12 @@ const NetflixMainScreen = ({onMovieSelect}) => {
   }, []); // Fixed the missing dependency array
 
   // Categorize movies by genre
-  const actionMovies = movies.filter(movie => movie.genre.includes('Action'));
-  const comedyMovies = movies.filter(movie => movie.genre.includes('Comedy'));
-  const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
-  const sciFiMovies = movies.filter(movie => movie.genre.includes('Sci-Fi'));
-  const animationMovies = movies.filter(movie => movie.genre.includes('Animation'));
+  const comedyMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Comedy'));
+  const dramaMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Drama'));
+  const sciFiMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Sci-Fi'));
+  const animationMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Animation'));
+  const actionMovies = movies.filter(movie => movie.genres && movie.genres.some(genre => genre.title === 'Action'));
+
   const sortedMovies = [...movies].sort((a, b) => b.id - a.id);
     const maxMoviesToShow = 10;
     const moviesToShow = sortedMovies.slice(0, maxMoviesToShow);
@@ -100,14 +100,12 @@ const NetflixMainScreen = ({onMovieSelect}) => {
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-
             <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} onMovieSelect={onMovieSelect} />
             <NetflixMovieScroll title="Action Movies" movies={actionMovies} loading={loading} onMovieSelect={onMovieSelect} />
             <NetflixMovieScroll title="Comedy Movies" movies={comedyMovies} loading={loading} onMovieSelect={onMovieSelect}/>
             <NetflixMovieScroll title="Drama Movies" movies={dramaMovies} loading={loading} onMovieSelect={onMovieSelect}/>
             <NetflixMovieScroll title="Sci-Fi Movies" movies={sciFiMovies} loading={loading} onMovieSelect={onMovieSelect}/>
             <NetflixMovieScroll title="Animated Movies" movies={animationMovies} loading={loading} onMovieSelect={onMovieSelect} />
-
         </div>
     );
 
