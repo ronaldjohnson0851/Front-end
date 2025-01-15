@@ -3,6 +3,8 @@ import EmblaCarousel from './EmblaCarousel.tsx';
 import { EmblaOptionsType } from 'embla-carousel'
 import './embla.css';
 import NetflixMovieScroll from './NetflixMovieScroll.jsx';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MoviePage from '../../Pages/MoviePage';
 
 
 const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true }
@@ -13,32 +15,99 @@ const SLIDES = [
     'carousel-photos/interstellarcaro.png',
 ];
 
-const NetflixMainScreen = ( {movies} ) => {
 
-//   useEffect(() => {
-//     // Simulate API call
-//     const fetchMovies = async () => {
-//       const response = await fetch('/api/movies'); // Replace with your API endpoint
-//       const data = await response.json();
-//       setMovies(data);
-//     };
-//
-//     fetchMovies();
-//   }, []);
+//maybe use id: instead of contentId:
+const DEFAULT_MOVIES = [
+  {
+    id: 1,
+    title: 'Die Hard',
+    duration: '132 minutes',
+    rating: 'R',
+    description: 'A New York City police officer tries to save his estranged wife and several others taken hostage by terrorists during a christmas party at the Nakatomi Plaza in Los Angeles.',
+    releaseDate: '1988-07-12',
+    genre: ['Action'],
+  },
+  {
+    id: 2,
+    title: '30 Days of Night',
+    duration: '114 minutes',
+    rating: 'R',
+    description: 'After an Alaskan town is plunged into darkness for a month, it is attacked by a bloodthirsty gang of vampires. ',
+    releaseDate: '2007-10-19',
+    genre: ['Horror'],
+  },
+  {
+    id: 3,
+    title: 'Toy Story',
+    duration: '81 minutes',
+    rating: 'G',
+    description: 'A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as the top toy in a boy’s bedroom.',
+    releaseDate: '1995-11-19',
+    genre: ['Animation'],
+  },
+  {
+    id: 4,
+    title: 'Toy Story 2',
+    duration: '92 minutes',
+    rating: 'G',
+    description: 'When Woody is stolen by a toy collector, Buzz and his friends set out on a rescue mission to save Woody before he becomes a museum toy property with his roundup gang Jessie, Prospector, and Bullseye.',
+    releaseDate: '1999-11-13',
+    genre: ['Animation'],
+  },
+  {
+    id: 5,
+    title: 'Back to the Future',
+    duration: '116 minutes',
+    rating: 'PG',
+    description: 'Marty Mcfly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.',
+    releaseDate: '1985-07-03',
+    genre: ['Sci-fi'],
+  },
+];
+
+
+
+const NetflixMainScreen = ({onMovieSelect}) => {
+
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/videos')
+      .then((response) => response.json())
+      .then((data) => {
+        setMovies(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching movies:', error);
+        setMovies(DEFAULT_MOVIES);
+        setLoading(false);
+      });
+  }, []); // Fixed the missing dependency array
+
+  // Categorize movies by genre
+  const actionMovies = movies.filter(movie => movie.genre.includes('Action'));
+  const comedyMovies = movies.filter(movie => movie.genre.includes('Comedy'));
+  const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
+  const sciFiMovies = movies.filter(movie => movie.genre.includes('Sci-Fi'));
+  const animationMovies = movies.filter(movie => movie.genre.includes('Animation'));
+  const sortedMovies = [...movies].sort((a, b) => b.id - a.id);
+    const maxMoviesToShow = 10;
+    const moviesToShow = sortedMovies.slice(0, maxMoviesToShow);
+
 
     return (
         <div style={componentNetflixScreenStyle}>
             <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-            <NetflixMovieScroll title="New Releases" movies={movies} />
-{/*             <NetflixMovieScroll title="Classics" movies={recentlyWatched} /> */}
-{/*             <div onClick={() => handleMovieClick(1)}>  */}{/* Movie ID = 1 */}
-{/*                     <img src="toy-story-thumbnail.jpg" alt="Toy Story" /> */}
-{/*                     <p>Toy Story</p> */}
-{/*                   </div> */}
-{/*                   <div onClick={() => handleMovieClick(2)}>  */}{/* Movie ID = 2 */}
-{/*                     <img src="frida-thumbnail.jpg" alt="Frida" /> */}
-{/*                     <p>Frida</p> */}
-{/*                   </div> */}
+
+            <NetflixMovieScroll title="Recently Added" movies={moviesToShow} loading={loading} onMovieSelect={onMovieSelect} />
+            <NetflixMovieScroll title="Action Movies" movies={actionMovies} loading={loading} onMovieSelect={onMovieSelect} />
+            <NetflixMovieScroll title="Comedy Movies" movies={comedyMovies} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="Drama Movies" movies={dramaMovies} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="Sci-Fi Movies" movies={sciFiMovies} loading={loading} onMovieSelect={onMovieSelect}/>
+            <NetflixMovieScroll title="Animated Movies" movies={animationMovies} loading={loading} onMovieSelect={onMovieSelect} />
+
         </div>
     );
 
