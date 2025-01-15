@@ -102,7 +102,7 @@ const [selectedMovieId, setSelectedMovieId] = useState("");
               genre: 'Animation',
               rating: 'PG',
               cast: 'Vin Diesel, Jennifer Aniston',
-              releaseYear: '1999',
+              releaseDate: '1999',
               length: '87 minutes',
               description: 'A young boy befriends a giant robot from outer space that a paranoid government agent wants to destroy.  ',
               thumbnail: '/video-thumbnails/the Iron Giant.png',

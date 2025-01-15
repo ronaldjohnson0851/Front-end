@@ -11,7 +11,7 @@ const MainHeader = ({onMovieSelect}) => {
   return (
     <header style={headerStyle}>
       <img src={logo} alt="Logo" style={logoStyle} />
-      <HeaderMenu />
+      <HeaderMenu onMovieSelect={onMovieSelect}/>
       <div style={rightSectionStyle}>
       <Link to="/upload-movie" style={{ textDecoration: 'none' }}>
               <button style={uploadButtonStyle}>
