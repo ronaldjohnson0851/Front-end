@@ -35,9 +35,8 @@ const MoviePage = () => {
 
   const videoPlayerStyle = {
     width: '100%',
-    aspectRatio: '16/9',
-    maxWidth: '800px', 
-    margin: '0 auto',
+    height: 'auto',
+    borderRadius: '8px',
   };
 
   const statsStyle = {
@@ -57,15 +56,7 @@ const MoviePage = () => {
   return (
     <div style={containerStyle}>
       <div style={videoPlayerStyle}>
-
-          <ReactPlayer
-                     url={movie.videoUrl}
-                     controls
-                     width='100%'
-                     height='100%'
-                     style={videoPlayerStyle}
-                  />
-
+        <ReactPlayer url={getVideoUrl(movie.title)} controls width="100%" />
       </div>
 
       <div style={statsStyle}>
